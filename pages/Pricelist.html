@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cordon Beauty Bar | Full Price List</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ── Tokens ── */
+    :root {
+      --rose:      #C9847A;
+      --blush:     #F2E6E0;
+      --champagne: #F7F0E8;
+      --bark:      #2C1F1A;
+      --mink:      #7A5C54;
+      --white:     #FDFAF7;
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'DM Sans', system-ui, sans-serif;
+      --radius:    14px;
+      --tr: 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--white);
+      color: var(--bark);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+      outline: 2px solid var(--rose); outline-offset: 2px;
+    }
+
+    /* ══════════════════════════════
+       HEADER
+    ══════════════════════════════ */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white);
+      box-shadow: 0 1px 0 rgba(44,31,26,0.08);
+    }
+    .header-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 24px; height: 70px;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 16px;
+    }
+    .logo-left { height: 140px; width: auto; display: block; }
+    .header-inner .logo-left { height: 140px; }
+
+    nav#navbar { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+    .nav-link {
+      font-size: 0.85rem; font-weight: 500; color: var(--mink);
+      padding: 6px 10px; border-radius: 6px;
+      transition: color var(--tr), background var(--tr); white-space: nowrap;
+    }
+    .nav-link:hover, .nav-link.active { color: var(--rose); background: var(--blush); }
+    .nav-link.button {
+      background: var(--rose); color: #fff;
+      padding: 7px 14px; border-radius: 30px;
+    }
+    .nav-link.button:hover { background: var(--mink); color: #fff; }
+    .nav-link.button.outline {
+      background: transparent; color: var(--rose);
+      border: 1.5px solid var(--rose);
+    }
+    .nav-link.button.outline:hover { background: var(--rose); color: #fff; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; flex-direction: column;
+      justify-content: space-between;
+      width: 26px; height: 18px;
+      cursor: pointer; background: none; border: none; padding: 0; z-index: 200;
+    }
+    .hamburger span {
+      display: block; height: 2px; background: var(--bark);
+      border-radius: 2px; transition: transform var(--tr), opacity var(--tr);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* Mobile nav overlay */
+    .mobile-nav {
+      display: none; position: fixed; inset: 0;
+      background: var(--white); z-index: 150;
+      flex-direction: column; align-items: center;
+      justify-content: center; gap: 24px; padding: 40px 24px;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav .nav-link {
+      font-size: 1.4rem; font-family: var(--ff-display);
+      font-weight: 400; color: var(--bark);
+      padding: 10px 0; letter-spacing: 0.03em; background: none;
+    }
+    .mobile-nav .nav-link.button {
+      font-family: var(--ff-body); font-size: 1rem;
+      padding: 12px 36px; border-radius: 30px;
+      background: var(--rose); color: #fff;
+    }
+
+    /* ══════════════════════════════
+       PAGE HERO
+    ══════════════════════════════ */
+    .page-hero {
+      background: linear-gradient(135deg, var(--bark) 0%, #4a2e27 100%);
+      padding: 60px 24px 0;
+      text-align: center; color: #fff;
+      position: relative; overflow: hidden;
+    }
+    .page-hero-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--rose);
+      font-weight: 500; margin-bottom: 10px;
+    }
+    .page-hero-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 300; letter-spacing: 0.02em;
+      line-height: 1.1; margin-bottom: 12px;
+    }
+    .page-hero-sub {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.95rem; max-width: 480px; margin: 0 auto;
+    }
+
+    /* Stats strip */
+    .stats-strip {
+      position: relative; margin-top: 36px;
+      display: flex; justify-content: center; gap: 0;
+      flex-wrap: wrap;
+    }
+    .stat {
+      padding: 18px 32px; text-align: center;
+      border-left: 1px solid rgba(255,255,255,0.15);
+    }
+    .stat:first-child { border-left: none; }
+    .stat-num {
+      display: block; font-family: var(--ff-display);
+      font-size: 1.7rem; font-weight: 600; color: var(--rose);
+    }
+    .stat-label {
+      font-size: 0.68rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.6);
+    }
+
+    /* ══════════════════════════════
+       MAIN LAYOUT
+    ══════════════════════════════ */
+    .main-wrap {
+      max-width: 1040px; margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ══════════════════════════════
+       TOOLBAR
+    ══════════════════════════════ */
+    .toolbar {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      align-items: center; margin-bottom: 14px;
+    }
+    .search-box {
+      flex: 1; min-width: 200px; position: relative;
+    }
+    .search-box input {
+      width: 100%; padding: 10px 16px 10px 40px;
+      border: 1.5px solid var(--blush); border-radius: 30px;
+      font-family: var(--ff-body); font-size: 0.875rem;
+      background: #fff; color: var(--bark); outline: none;
+      transition: border-color var(--tr);
+    }
+    .search-box input:focus { border-color: var(--rose); }
+    .search-box input::placeholder { color: var(--mink); opacity: 0.7; }
+    .search-icon {
+      position: absolute; left: 14px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.9rem; pointer-events: none; color: var(--mink);
+    }
+    .clear-btn {
+      position: absolute; right: 14px; top: 50%;
+      transform: translateY(-50%);
+      background: none; border: none; cursor: pointer;
+      color: var(--mink); font-size: 1rem; display: none;
+      line-height: 1;
+    }
+
+    .filter-pills {
+      display: flex; gap: 8px; flex-wrap: nowrap;
+      overflow-x: auto; padding-bottom: 4px;
+      margin-bottom: 14px; scrollbar-width: thin;
+    }
+    .filter-pills::-webkit-scrollbar { height: 4px; }
+    .filter-pills::-webkit-scrollbar-thumb { background: var(--blush); border-radius: 10px; }
+    .pill {
+      font-size: 0.78rem; font-family: var(--ff-body);
+      font-weight: 500; letter-spacing: 0.02em;
+      padding: 7px 16px; border-radius: 30px;
+      border: 1.5px solid var(--blush);
+      background: transparent; color: var(--mink);
+      cursor: pointer; white-space: nowrap; flex-shrink: 0;
+      transition: background var(--tr), color var(--tr), border-color var(--tr);
+    }
+    .pill:hover { border-color: var(--rose); color: var(--rose); }
+    .pill.active { background: var(--rose); border-color: var(--rose); color: #fff; }
+
+    /* ══════════════════════════════
+       SUMMARY BAR
+    ══════════════════════════════ */
+    .summary-bar {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px; flex-wrap: wrap; gap: 8px;
+    }
+    .result-count { font-size: 0.8rem; color: var(--mink); }
+    .result-count strong { color: var(--bark); }
+    .right-controls { display: flex; gap: 10px; align-items: center; }
+    .sort-select {
+      font-size: 0.8rem; font-family: var(--ff-body);
+      padding: 6px 12px; border-radius: 8px;
+      border: 1.5px solid var(--blush);
+      background: #fff; color: var(--mink);
+      outline: none; cursor: pointer;
+      transition: border-color var(--tr);
+    }
+    .sort-select:focus { border-color: var(--rose); }
+
+    .view-toggle { display: flex; gap: 6px; }
+    .view-btn {
+      width: 34px; height: 34px;
+      border: 1.5px solid var(--blush); border-radius: 8px;
+      background: #fff; cursor: pointer; font-size: 0.9rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background var(--tr), border-color var(--tr);
+    }
+    .view-btn.active { background: var(--rose); border-color: var(--rose); color: #fff; }
+
+    /* ══════════════════════════════
+       TABLE
+    ══════════════════════════════ */
+    .table-wrap {
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid rgba(201,132,122,0.18);
+      box-shadow: 0 4px 28px rgba(44,31,26,0.08);
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+
+    thead th {
+      background: var(--bark); color: #fff;
+      padding: 14px 20px; text-align: left;
+      font-family: var(--ff-display); font-size: 1rem;
+      font-weight: 400; letter-spacing: 0.04em;
+    }
+    thead th.price-col { text-align: right; width: 130px; }
+
+    tr.section-row td {
+      background: var(--bark); color: #fff;
+      font-family: var(--ff-display); font-size: 1.1rem;
+      font-weight: 600; letter-spacing: 0.02em;
+      padding: 14px 20px;
+      border-top: 3px solid var(--rose);
+    }
+    tr.category-row td {
+      background: var(--blush);
+      color: var(--rose);
+      font-size: 0.72rem; letter-spacing: 0.18em;
+      text-transform: uppercase; font-weight: 600;
+      padding: 9px 20px;
+    }
+    tr.price-row td {
+      padding: 12px 20px;
+      border-bottom: 1px solid rgba(242,230,224,0.7);
+      background: #fff; vertical-align: middle;
+      transition: background var(--tr);
+    }
+    tr.price-row:hover td { background: var(--champagne); }
+    tr.price-row td.price-cell {
+      text-align: right; font-weight: 600;
+      color: var(--bark); white-space: nowrap;
+    }
+    tr.price-row td.price-cell span {
+      display: inline-block;
+      background: var(--blush); color: var(--rose);
+      padding: 3px 10px; border-radius: 20px;
+      font-size: 0.82rem; font-weight: 600;
+    }
+    .row-tag {
+      display: block; font-size: 0.66rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--rose);
+      font-weight: 600; margin-bottom: 2px;
+    }
+
+    /* No results */
+    .no-results {
+      text-align: center; padding: 48px 24px;
+      color: var(--mink); font-size: 0.95rem; display: none;
+    }
+    .no-results.show { display: block; }
+
+    /* ══════════════════════════════
+       CARD VIEW (mobile alternative)
+    ══════════════════════════════ */
+    .card-view { display: none; gap: 14px; flex-direction: column; }
+    .price-card {
+      background: #fff; border-radius: var(--radius);
+      border: 1px solid rgba(201,132,122,0.16);
+      padding: 18px 20px;
+      display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 2px 12px rgba(44,31,26,0.06);
+      gap: 12px;
+    }
+    .price-card-info { flex: 1; }
+    .price-card-cat {
+      font-size: 0.65rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--rose);
+      font-weight: 500; margin-bottom: 4px;
+    }
+    .price-card-name {
+      font-size: 0.92rem; font-weight: 500; color: var(--bark);
+    }
+    .price-card-price {
+      background: var(--blush); color: var(--rose);
+      padding: 5px 14px; border-radius: 20px;
+      font-size: 0.85rem; font-weight: 600;
+      white-space: nowrap;
+    }
+    .no-results-cards { display: none; text-align: center; padding: 32px 0; color: var(--mink); }
+
+    /* ══════════════════════════════
+       BOOK CTA
+    ══════════════════════════════ */
+    .book-cta {
+      margin-top: 48px;
+      background: linear-gradient(135deg, var(--blush) 0%, var(--champagne) 100%);
+      border-radius: var(--radius); padding: 40px 32px; text-align: center;
+    }
+    .book-cta p.eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--rose);
+      font-weight: 500; margin-bottom: 8px;
+    }
+    .book-cta h3 {
+      font-family: var(--ff-display); font-size: 1.8rem;
+      font-weight: 300; color: var(--bark); margin-bottom: 10px;
+    }
+    .book-cta p.sub {
+      color: var(--mink); font-size: 0.9rem; margin-bottom: 24px;
+    }
+    .book-btn {
+      display: inline-block; padding: 13px 36px;
+      background: var(--rose); color: #fff; border-radius: 30px;
+      font-size: 0.875rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: background var(--tr), transform var(--tr);
+    }
+    .book-btn:hover { background: var(--mink); transform: translateY(-2px); }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    footer {
+      background: #1a100d; color: rgba(255,255,255,0.6);
+      padding: 36px 24px; text-align: center; font-size: 0.82rem;
+    }
+    footer .footer-brand {
+      font-family: var(--ff-display); font-size: 1.05rem;
+      color: rgba(255,255,255,0.85); margin-bottom: 6px;
+    }
+    footer .footer-credit { margin-bottom: 14px; }
+    footer .footer-highlight { color: var(--rose); }
+    .footer-social { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+    .footer-link { color: rgba(255,255,255,0.5); transition: color var(--tr); }
+    .footer-link:hover { color: var(--rose); }
+
+    /* ══════════════════════════════
+       SCROLL TO TOP
+    ══════════════════════════════ */
+    #scroll-top {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 46px; height: 46px; background: var(--rose);
+      color: #fff; border: none; border-radius: 50%; font-size: 1.2rem;
+      cursor: pointer; box-shadow: 0 4px 16px rgba(201,132,122,0.4);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity var(--tr), transform var(--tr); z-index: 90;
+    }
+    #scroll-top.visible { opacity: 1; pointer-events: auto; }
+    #scroll-top:hover { transform: scale(1.1); }
+
+    /* ══════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════ */
+    @media (max-width: 768px) {
+      nav#navbar { display: none; }
+      .hamburger { display: flex; }
+      .toolbar { flex-direction: column; align-items: stretch; }
+      .stats-strip { gap: 0; }
+      .stat { padding: 14px 18px; }
+      .stat-num { font-size: 1.4rem; }
+      /* Switch to card view on mobile */
+      .table-wrap { display: none; }
+      .card-view { display: flex; }
+      .no-results { display: none !important; }
+      .book-cta { padding: 28px 20px; }
+    }
+    @media (max-width: 480px) {
+      .logo-left { height: 34px; }
+      .header-inner { height: 60px; }
+    }
+    @media (max-width: 420px) {
+      .stat { padding: 12px 14px; }
+      .stat-label { font-size: 0.6rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+ <!-- ── Header ── -->
+  <header id="main-header">
+    <div class="header-inner">
+      <a href="./index.html" aria-label="Cordon Beauty Bar home">
+        <br>
+        <img src="../cordon images/cordon logo 23.png" alt="Cordon Beauty Bar Logo" class="logo-left">
+      </a>
+      <nav id="navbar" aria-label="Main navigation">
+        <a href="../index.html" class="nav-link active">Home</a>
+        <a href="./About.html" class="nav-link">About</a>
+        <a href="./Services.html" class="nav-link">Services</a>
+        <a href="./Pricelist.html" class="nav-link">Price List</a>
+        <a href="./Testimonials.html" class="nav-link">Testimonials</a>
+        <a href="./Contact.html" class="nav-link">Contact</a>
+        <a href="./Careers.html" class="nav-link button">Careers</a>
+        <a href="./Book-online.html" class="nav-link button">Book Online</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navbar">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <br>
+    <br>
+    <hr class="divider">
+  </header>
+  
+
+  <!-- ── Mobile Nav Overlay ── -->
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <a href="../index.html" class="nav-link">Home</a>
+    <a href="./About.html" class="nav-link">About</a>
+    <a href="./Services.html" class="nav-link">Services</a>
+    <a href="./Pricelist.html" class="nav-link active">Price List</a>
+    <a href="./Testimonials.html" class="nav-link">Testimonials</a>
+    <a href="./Contact.html" class="nav-link">Contact</a>
+    <a href="./Careers.html" class="nav-link">Careers</a>
+    <a href="./Book-online.html" class="nav-link button">Book Online</a>
+  </nav>
+
+  <!-- ── Page Hero ── -->
+  <div class="page-hero">
+    <p class="page-hero-eyebrow">Price List</p>
+    <h1 class="page-hero-title">Cordon Beauty Bar Price List</h1>
+    <p class="page-hero-sub">Discover our affordable to premium pricing options, tailored to suit every budget while maintaining the highest quality of service.</p>
+    <div class="stats-strip">
+      <div class="stat"><span class="stat-num" id="stat-sections">–</span><span class="stat-label">Categories</span></div>
+      <div class="stat"><span class="stat-num" id="stat-services">–</span><span class="stat-label">Services</span></div>
+      <div class="stat"><span class="stat-num" id="stat-range">–</span><span class="stat-label">Price Range</span></div>
+    </div>
+  </div>
+
+  <!-- ── Main Content ── -->
+  <main class="main-wrap">
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="search" id="search-input" placeholder="Search e.g. gel, lashes, wig, plaiting…" autocomplete="off">
+        <button class="clear-btn" id="clear-btn" aria-label="Clear search">✕</button>
+      </div>
+    </div>
+    <div class="filter-pills" role="group" aria-label="Filter by category" id="filter-pills"></div>
+
+    <!-- Summary bar -->
+    <div class="summary-bar">
+      <p class="result-count" id="result-count"></p>
+      <div class="right-controls">
+        <select class="sort-select" id="sort-select" aria-label="Sort prices">
+          <option value="default">Default order</option>
+          <option value="asc">Price: low → high</option>
+          <option value="desc">Price: high → low</option>
+        </select>
+        <div class="view-toggle" id="view-toggle" aria-label="Toggle view">
+          <button class="view-btn active" id="btn-table" title="Table view" aria-pressed="true">☰</button>
+          <button class="view-btn" id="btn-cards" title="Card view" aria-pressed="false">⊞</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table view -->
+    <div class="table-wrap" id="table-wrap">
+      <table id="price-table" aria-label="Full price list">
+        <thead>
+          <tr>
+            <th class="service-col">Service</th>
+            <th class="price-col">Price (R)</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+      <div class="no-results" id="no-results">
+        No services found for "<span id="no-results-term"></span>". Try a different search or filter.
+      </div>
+    </div>
+
+    <!-- Card view (mobile & toggle) -->
+    <div class="card-view" id="card-view"></div>
+    <p class="no-results-cards" id="no-results-cards">
+      No services found. Try a different search or filter.
+    </p>
+
+    <!-- Book CTA -->
+    <div class="book-cta">
+      <p class="eyebrow">Ready to book?</p>
+      <h3>Found Your Perfect Treatment?</h3>
+      <p class="sub">Choose your service and secure your appointment online — quick and easy.</p>
+      <a href="./Book-online.html" class="book-btn">Book Online</a>
+    </div>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer id="footer">
+    <div class="footer-container">
+      <p class="footer-brand">Cordon Beauty Bar</p>
+      <p class="footer-credit">
+        Developed &amp; Maintained by <span class="footer-highlight">Zukhanye Ntlama</span>
+      </p>
+      <div class="footer-social">
+        <a href="mailto:info@cordonbeauty.co.za" class="footer-link">📧 Email</a>
+        <a href="tel:+27213566776" class="footer-link">📞 Call</a>
+        <a href="https://www.linkedin.com/in/zukhanye-ntlama" target="_blank" rel="noopener" class="footer-link">🌐 LinkedIn</a>
+      </div>
+      <p style="margin-top:16px;font-size:0.75rem;">© 2026 Cordon Beauty Bar · All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <!-- ── Scroll to top ── -->
+  <button id="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <!-- ════════════════════════════
+       JAVASCRIPT
+  ════════════════════════════ -->
+  <script>
+    /* ── Data ── */
+    const priceData = [
+      /* ───────── Nails ───────── */
+      { section: 'Nails', category: 'Gel', service: 'Gel Overlay', price: 250 },
+      { section: 'Nails', category: 'Gel', service: 'Gel Overlay + Tips', price: 300 },
+      { section: 'Nails', category: 'Gel', service: 'Gel Overlay Ombre + Tips', price: 400 },
+      { section: 'Nails', category: 'Gel', service: 'Gel Overlay French + Tips', price: 400 },
+      { section: 'Nails', category: 'Gel', service: 'Gel Overlay + Tips Refill (3–4 weeks)', price: 200 },
+
+      { section: 'Nails', category: 'Polygel', service: 'Polygel Overlay', price: 350 },
+      { section: 'Nails', category: 'Polygel', service: 'Polygel Overlay full set + Tips', price: 400 },
+      { section: 'Nails', category: 'Polygel', service: 'Polygel full set + Gel Polish (Tips)', price: 450 },
+      { section: 'Nails', category: 'Polygel', service: 'Polygel Sculpture', price: 400 },
+      { section: 'Nails', category: 'Polygel', service: 'Polygel Sculpture + Gel Polish', price: 450 },
+      { section: 'Nails', category: 'Polygel', service: 'Polygel Ombre full set + Tips', price: 500 },
+      { section: 'Nails', category: 'Polygel', service: 'Polygel French full set + Tips', price: 500 },
+      { section: 'Nails', category: 'Polygel', service: 'Polygel Refill (3–6 weeks)', price: 250 },
+      { section: 'Nails', category: 'Polygel', service: 'Polygel Refill + Tips (3–6 weeks)', price: 300 },
+      { section: 'Nails', category: 'Polygel', service: 'Polygel Sculpture Refill (4–6 weeks)', price: 350 },
+
+      { section: 'Nails', category: 'Acrylic', service: 'Acrylic Overlay', price: 300 },
+      { section: 'Nails', category: 'Acrylic', service: 'Acrylic Overlay + Tips', price: 350 },
+      { section: 'Nails', category: 'Acrylic', service: 'Acrylic Overlay + Gel Polish', price: 350 },
+      { section: 'Nails', category: 'Acrylic', service: 'Acrylic Overlay + Gel Polish (Tips)', price: 400 },
+      { section: 'Nails', category: 'Acrylic', service: 'Acrylic Overlay Ombre (Tips)', price: 450 },
+      { section: 'Nails', category: 'Acrylic', service: 'Acrylic Overlay French (Tips)', price: 450 },
+      { section: 'Nails', category: 'Acrylic', service: 'Acrylic Refill + Gel Polish (No Tips)', price: 250 },
+      { section: 'Nails', category: 'Acrylic', service: 'Acrylic Refill + Gel Polish (Tips)', price: 300 },
+
+      { section: 'Nails', category: 'Pedicure', service: 'Gel Overlay (toes)', price: 200 },
+      { section: 'Nails', category: 'Pedicure', service: 'Acrylic Overlay (toes)', price: 250 },
+      { section: 'Nails', category: 'Pedicure', service: 'Polygel Overlay (toes)', price: 300 },
+      { section: 'Nails', category: 'Pedicure', service: 'Soak, file, buff + Gel Overlay', price: 300 },
+      { section: 'Nails', category: 'Pedicure', service: 'Soak, file, buff + Acrylic Overlay', price: 350 },
+      { section: 'Nails', category: 'Pedicure', service: 'Soak, file, buff + Polygel Overlay', price: 350 },
+      { section: 'Nails', category: 'Pedicure', service: 'Soak, file, buff, exfoliation & Massage', price: 350 },
+      { section: 'Nails', category: 'Pedicure', service: 'Soak, file, buff, exfoliation & Massage + Gel Overlay', price: 500 },
+      { section: 'Nails', category: 'Pedicure', service: 'Soak, file, buff, exfoliation & Massage + Acrylic Overlay', price: 550 },
+      { section: 'Nails', category: 'Pedicure', service: 'Soak, file, buff, exfoliation & Massage + Polygel Overlay', price: 550 },
+
+      { section: 'Nails', category: 'Extras', service: 'Tips (Hands)', price: 100, prefix: '+' },
+      { section: 'Nails', category: 'Extras', service: 'Tips (Toes)', price: 50, prefix: '+' },
+      { section: 'Nails', category: 'Extras', service: 'French Pedi', price: 100, prefix: '+' },
+      { section: 'Nails', category: 'Extras', service: 'Nail Soak Off', price: 100, prefix: '+' },
+      { section: 'Nails', category: 'Extras', service: 'Nail Art (per nail)', price: 20, prefix: '+' },
+      { section: 'Nails', category: 'Extras', service: 'Nail Art (all hand nails)', price: 150 },
+      { section: 'Nails', category: 'Extras', service: 'French Mani design', price: 100, prefix: '+' },
+      { section: 'Nails', category: 'Extras', service: 'Ombre nails design', price: 100, prefix: '+' },
+      { section: 'Nails', category: 'Extras', service: 'Cat-eye nails design', price: 100, prefix: '+' },
+
+      /* ───────── Make-Up ───────── */
+      { section: 'Make-Up', category: 'Make-Up', service: 'Full Glam Makeup', price: 750 },
+      { section: 'Make-Up', category: 'Make-Up', service: 'Soft Glam Makeup', price: 650 },
+      { section: 'Make-Up', category: 'Make-Up', service: 'Natural Glam Makeup', price: 550 },
+      { section: 'Make-Up', category: 'Make-Up', service: 'Creative / Artistic Makeup', price: 850 },
+
+      { section: 'Make-Up', category: 'Bridal Make-Up', service: 'The Bride Make-Up (includes skin prep)', price: 900 },
+      { section: 'Make-Up', category: 'Bridal Make-Up', service: 'Mother of the Bride + The Bride', price: 1500 },
+      { section: 'Make-Up', category: 'Bridal Make-Up', service: 'The Bride + 3 Bridesmaids', price: 3000 },
+      { section: 'Make-Up', category: 'Bridal Make-Up', service: 'The Bride + 5 Bridesmaids', price: 4500 },
+      { section: 'Make-Up', category: 'Bridal Make-Up', service: 'The Bride Make-Up Trial', price: 550 },
+
+      /* ───────── Lashes & Brows ───────── */
+      { section: 'Lashes & Brows', category: 'Individual Lashes', service: 'Volume Lashes', price: 650 },
+      { section: 'Lashes & Brows', category: 'Individual Lashes', service: 'Volume Lash Refill (2–3 weeks)', price: 400 },
+      { section: 'Lashes & Brows', category: 'Individual Lashes', service: 'Wispy Lashes', price: 550 },
+      { section: 'Lashes & Brows', category: 'Individual Lashes', service: 'Wispy Lash Refill (2–3 weeks)', price: 350 },
+      { section: 'Lashes & Brows', category: 'Individual Lashes', service: 'Hybrid Lashes', price: 500 },
+      { section: 'Lashes & Brows', category: 'Individual Lashes', service: 'Hybrid Lash Refill (2–3 weeks)', price: 300 },
+      { section: 'Lashes & Brows', category: 'Individual Lashes', service: 'Classic Lashes', price: 400 },
+      { section: 'Lashes & Brows', category: 'Individual Lashes', service: 'Classic Lash Refill (2–3 weeks)', price: 200 },
+
+      { section: 'Lashes & Brows', category: 'Cluster Lashes', service: 'Volume Cluster Lashes', price: 450 },
+      { section: 'Lashes & Brows', category: 'Cluster Lashes', service: 'Volume Cluster Refill (2–3 weeks)', price: 250 },
+      { section: 'Lashes & Brows', category: 'Cluster Lashes', service: 'Hybrid Cluster Lashes', price: 400 },
+      { section: 'Lashes & Brows', category: 'Cluster Lashes', service: 'Hybrid Cluster Refill (2–3 weeks)', price: 200 },
+      { section: 'Lashes & Brows', category: 'Cluster Lashes', service: 'Classic Cluster Lashes', price: 300 },
+      { section: 'Lashes & Brows', category: 'Cluster Lashes', service: 'Classic Cluster Refill (2–3 weeks)', price: 150 },
+
+      { section: 'Lashes & Brows', category: 'Extras', service: 'Bottom Lash Extensions', price: 150, prefix: '+' },
+      { section: 'Lashes & Brows', category: 'Extras', service: 'Spikes Lash Extensions', price: 100, prefix: '+' },
+      { section: 'Lashes & Brows', category: 'Extras', service: 'Cat Eye Lash Extensions', price: 50, prefix: '+' },
+      { section: 'Lashes & Brows', category: 'Extras', service: 'Doll Eye Lash Extensions', price: 50, prefix: '+' },
+      { section: 'Lashes & Brows', category: 'Extras', service: 'Lash Removal', price: 100 },
+
+      { section: 'Lashes & Brows', category: 'Brows', service: 'Brow Shape', price: 100 },
+      { section: 'Lashes & Brows', category: 'Brows', service: 'Brow Tint', price: 100 },
+      { section: 'Lashes & Brows', category: 'Brows', service: 'Brow Lamination', price: 250 },
+
+      /* ───────── Hair Treatments ───────── */
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Hair Wash', price: 150 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Conditioning Hair Treatment', price: 200 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Mizani Hair Treatment', price: 300 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Silk Press', price: 400 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Dark & Lovely Hair Relaxer', price: 300 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Mizani Regular Hair Relaxer', price: 400 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Mizani Sensitive Hair Relaxer', price: 450 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'All Regular Hair Relaxers', price: 250 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Gel Ponytail/Pondo (excl. hairpiece)', price: 350 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Gel Ponytail/Pondo (incl. hairpiece)', price: 650 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Frontal Ponytail Installation (excl. hairpiece)', price: 500 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Frontal Ponytail + Bundle Install (incl. hairpiece)', price: 1200 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Half Up - Half Down Ponytail (excl. hairpiece)', price: 450 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Half Up - Half Down Ponytail (incl. hairpiece)', price: 750 },
+
+      /* ───────── Hair Plaiting ───────── */
+      { section: 'Hair Plaiting', category: 'Basic Plaits', service: 'Wash & Plaits', price: 300 },
+      { section: 'Hair Plaiting', category: 'Basic Plaits', service: 'Wash & Stylish Plaits', price: 350 },
+      { section: 'Hair Plaiting', category: 'Basic Plaits', service: 'Normal Straight Plaits', price: 200 },
+      { section: 'Hair Plaiting', category: 'Basic Plaits', service: 'Stylish Plaits', price: 250 },
+      { section: 'Hair Plaiting', category: 'Basic Plaits', service: 'Normal Straight Plaits (incl. hairpiece)', price: 250 },
+      { section: 'Hair Plaiting', category: 'Basic Plaits', service: 'Stylish Plaits (incl. hairpiece)', price: 300 },
+
+      { section: 'Hair Plaiting', category: 'Straight Back', service: 'Straight Back (Medium – Mid Back length)', price: 400 },
+      { section: 'Hair Plaiting', category: 'Straight Back', service: 'Straight Back (Medium – Bum length)', price: 500 },
+      { section: 'Hair Plaiting', category: 'Straight Back', service: 'Straight Back (Small – Mid Back length)', price: 450 },
+      { section: 'Hair Plaiting', category: 'Straight Back', service: 'Straight Back (Small – Bum length)', price: 550 },
+      { section: 'Hair Plaiting', category: 'Straight Back', service: 'Straight Back (Jumbo – Mid Back)', price: 350 },
+      { section: 'Hair Plaiting', category: 'Straight Back', service: 'Straight Back (Jumbo – Waist length)', price: 450 },
+
+      { section: 'Hair Plaiting', category: 'Cornrows', service: 'Stylish Cornrows (Mid Back length)', price: 550 },
+      { section: 'Hair Plaiting', category: 'Cornrows', service: 'Stylish Cornrows (Waist length)', price: 650 },
+
+      { section: 'Hair Plaiting', category: 'Upstyle', service: 'Upstyle (Medium – Mid Back length)', price: 700 },
+      { section: 'Hair Plaiting', category: 'Upstyle', service: 'Upstyle (Medium – Waist length)', price: 800 },
+
+      /* ───────── Hair Extras ───────── */
+      { section: 'Hair Extras', category: 'Hair Extras', service: 'Natural Hair Blow & Iron', price: 200 },
+      { section: 'Hair Extras', category: 'Hair Extras', service: 'Natural Hair Styling', price: 150 },
+      { section: 'Hair Extras', category: 'Hair Extras', service: 'Natural Hair Colouring', price: 250 },
+      { section: 'Hair Extras', category: 'Hair Extras', service: 'Hair Undo (wig lines & plaits etc.)', price: 50 },
+      { section: 'Hair Extras', category: 'Hair Extras', service: 'Hair Undo (braids)', price: 100 },
+
+      /* ───────── Wig Installation & Extras ───────── */
+      { section: 'Wig Installation & Extras', category: 'Wig Installation', service: 'Wig Installation', price: 400 },
+      { section: 'Wig Installation & Extras', category: 'Wig Installation', service: 'Wig Installation (our own CB hair)', price: 350 },
+
+      { section: 'Wig Installation & Extras', category: 'Wig Making & Treatment', service: 'Wig Making', price: 500 },
+      { section: 'Wig Installation & Extras', category: 'Wig Making & Treatment', service: 'Wig Treatment', price: 250 },
+      { section: 'Wig Installation & Extras', category: 'Wig Making & Treatment', service: 'Wig Wash', price: 200 },
+
+      { section: 'Wig Installation & Extras', category: 'Wig Customisation & Colouring', service: 'Wig Customisation', price: 300 },
+      { section: 'Wig Installation & Extras', category: 'Wig Customisation & Colouring', service: 'Wig Colouring (8–16 inches)', price: 450 },
+      { section: 'Wig Installation & Extras', category: 'Wig Customisation & Colouring', service: 'Wig Colouring (18–30 inches)', price: 600 },
+      { section: 'Wig Installation & Extras', category: 'Wig Customisation & Colouring', service: 'Wig Closure Replacement', price: 300 },
+
+      { section: 'Wig Installation & Extras', category: 'Wig Styling & Extras', service: 'Wig Blow & Iron', price: 150 },
+      { section: 'Wig Installation & Extras', category: 'Wig Styling & Extras', service: 'Wig Blunt Cut', price: 100 },
+      { section: 'Wig Installation & Extras', category: 'Wig Styling & Extras', service: 'Wig Band Replacement', price: 150 },
+      { section: 'Wig Installation & Extras', category: 'Wig Styling & Extras', service: 'Wig Styling', price: 200 },
+    ];
+
+    const sectionOrder  = [...new Set(priceData.map(d => d.section))];
+    const filterOptions = ['All', ...sectionOrder];
+    const pillLabels = {
+      'All': 'All',
+      'Nails': 'Nails',
+      'Make-Up': 'Make-Up',
+      'Lashes & Brows': 'Lashes',
+      'Hair Treatments': 'Treatments',
+      'Hair Plaiting': 'Plaiting',
+      'Hair Extras': 'Extras',
+      'Wig Installation & Extras': 'Wigs'
+    };
+
+    /* ── Fill stats strip ── */
+    document.getElementById('stat-sections').textContent = sectionOrder.length;
+    document.getElementById('stat-services').textContent = priceData.length + '+';
+    const allPrices = priceData.map(d => d.price);
+    document.getElementById('stat-range').textContent =
+      `R${Math.min(...allPrices)}–R${Math.max(...allPrices)}`;
+
+    /* ── State ── */
+    let activeFilter = 'All';
+    let searchTerm   = '';
+    let sortOrder    = 'default';
+    let activeView   = 'table'; // 'table' | 'cards'
+
+    /* ── Build filter pills ── */
+    const pillsContainer = document.getElementById('filter-pills');
+    filterOptions.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'pill' + (opt === 'All' ? ' active' : '');
+      btn.textContent = pillLabels[opt] || opt;
+      btn.title = opt;
+      btn.dataset.filter = opt;
+      btn.addEventListener('click', () => {
+        activeFilter = opt;
+        document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        render();
+      });
+      pillsContainer.appendChild(btn);
+    });
+
+    /* ── Filtered + sorted data ── */
+    function getFiltered() {
+      let data = priceData.filter(row => {
+        const matchSection = activeFilter === 'All' || row.section === activeFilter;
+        const matchSearch = !searchTerm ||
+          row.service.toLowerCase().includes(searchTerm) ||
+          row.category.toLowerCase().includes(searchTerm) ||
+          row.section.toLowerCase().includes(searchTerm);
+        return matchSection && matchSearch;
+      });
+      if (sortOrder !== 'default') {
+        data = [...data].sort((a, b) =>
+          sortOrder === 'asc' ? a.price - b.price : b.price - a.price
+        );
+      }
+      return data;
+    }
+
+    /* ── Highlight helper ── */
+    function highlight(text) {
+      if (!searchTerm) return text;
+      const re = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+      return text.replace(re, '<mark style="background:rgba(201,132,122,0.25);border-radius:3px;padding:0 2px;">$1</mark>');
+    }
+
+    function rowTag(row) {
+      return activeFilter === 'All' ? `${row.section} · ${row.category}` : row.category;
+    }
+
+    /* ── Render ── */
+    function render() {
+      const data = getFiltered();
+
+      document.getElementById('result-count').innerHTML =
+        `Showing <strong>${data.length}</strong> service${data.length !== 1 ? 's' : ''}`;
+
+      const noResults  = document.getElementById('no-results');
+      const noResultsC = document.getElementById('no-results-cards');
+      const isEmpty    = data.length === 0;
+
+      noResults.classList.toggle('show', isEmpty && activeView === 'table');
+      noResultsC.style.display = isEmpty && activeView === 'cards' ? 'block' : 'none';
+      if (isEmpty) {
+        document.getElementById('no-results-term').textContent = searchTerm || activeFilter;
+        document.getElementById('table-body').innerHTML = '';
+        document.getElementById('card-view').innerHTML = '';
+        return;
+      }
+      noResults.classList.remove('show');
+      noResultsC.style.display = 'none';
+
+      renderTable(data);
+      renderCards(data);
+    }
+
+    /* ── Table render ── */
+    function renderTable(data) {
+      const tbody = document.getElementById('table-body');
+      tbody.innerHTML = '';
+
+      if (sortOrder !== 'default') {
+        data.forEach(row => tbody.appendChild(makeTR(row, true)));
+        return;
+      }
+
+      sectionOrder.forEach(section => {
+        const sectionRows = data.filter(r => r.section === section);
+        if (!sectionRows.length) return;
+
+        const sTr = document.createElement('tr');
+        sTr.className = 'section-row';
+        sTr.innerHTML = `<td colspan="2">${section}</td>`;
+        tbody.appendChild(sTr);
+
+        const catOrder = [...new Set(sectionRows.map(r => r.category))];
+        catOrder.forEach(cat => {
+          const catRows = sectionRows.filter(r => r.category === cat);
+          const cTr = document.createElement('tr');
+          cTr.className = 'category-row';
+          cTr.innerHTML = `<td colspan="2">${cat}</td>`;
+          tbody.appendChild(cTr);
+          catRows.forEach(row => tbody.appendChild(makeTR(row, false)));
+        });
+      });
+    }
+
+    function makeTR(row, showTag) {
+      const tr = document.createElement('tr');
+      tr.className = 'price-row';
+      tr.innerHTML = `
+        <td>${showTag ? `<span class="row-tag">${rowTag(row)}</span>` : ''}${highlight(row.service)}</td>
+        <td class="price-cell"><span>${row.prefix || ''}R ${row.price}</span></td>
+      `;
+      return tr;
+    }
+
+    /* ── Card render ── */
+    function renderCards(data) {
+      const container = document.getElementById('card-view');
+      container.innerHTML = '';
+
+      data.forEach(row => {
+        const card = document.createElement('div');
+        card.className = 'price-card';
+        card.innerHTML = `
+          <div class="price-card-info">
+            <p class="price-card-cat">${rowTag(row)}</p>
+            <p class="price-card-name">${highlight(row.service)}</p>
+          </div>
+          <div class="price-card-price">${row.prefix || ''}R ${row.price}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    /* ── View toggle ── */
+    const tableWrap = document.getElementById('table-wrap');
+    const cardView  = document.getElementById('card-view');
+    const btnTable  = document.getElementById('btn-table');
+    const btnCards  = document.getElementById('btn-cards');
+
+    function setView(view) {
+      activeView = view;
+      if (view === 'table') {
+        tableWrap.style.display = '';
+        cardView.style.display  = 'none';
+        btnTable.classList.add('active');
+        btnCards.classList.remove('active');
+        btnTable.setAttribute('aria-pressed', 'true');
+        btnCards.setAttribute('aria-pressed', 'false');
+      } else {
+        tableWrap.style.display = 'none';
+        cardView.style.display  = 'flex';
+        btnCards.classList.add('active');
+        btnTable.classList.remove('active');
+        btnCards.setAttribute('aria-pressed', 'true');
+        btnTable.setAttribute('aria-pressed', 'false');
+      }
+      render();
+    }
+
+    btnTable.addEventListener('click', () => setView('table'));
+    btnCards.addEventListener('click', () => setView('cards'));
+
+    /* ── Search ── */
+    const searchInput = document.getElementById('search-input');
+    const clearBtn    = document.getElementById('clear-btn');
+
+    searchInput.addEventListener('input', () => {
+      searchTerm = searchInput.value.trim().toLowerCase();
+      clearBtn.style.display = searchTerm ? 'block' : 'none';
+      render();
+    });
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      searchTerm = '';
+      clearBtn.style.display = 'none';
+      searchInput.focus();
+      render();
+    });
+
+    /* ── Sort ── */
+    document.getElementById('sort-select').addEventListener('change', e => {
+      sortOrder = e.target.value;
+      render();
+    });
+
+    /* ── Auto switch to cards on small screens ── */
+    const mq = window.matchMedia('(max-width: 768px)');
+    function handleBreakpoint(e) {
+      if (e.matches) {
+        setView('cards');
+        document.getElementById('view-toggle').style.display = 'none';
+      } else {
+        setView('table');
+        document.getElementById('view-toggle').style.display = 'flex';
+      }
+    }
+    mq.addEventListener('change', handleBreakpoint);
+    handleBreakpoint(mq); // run on load
+
+    /* ── Hamburger ── */
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav  = document.getElementById('mobile-nav');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      mobileNav.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+    document.addEventListener('click', e => {
+      if (mobileNav.classList.contains('open') &&
+          !mobileNav.contains(e.target) &&
+          !hamburger.contains(e.target)) {
+        hamburger.classList.remove('open');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    /* ── Scroll to top ── */
+    const scrollBtn = document.getElementById('scroll-top');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    scrollBtn.addEventListener('click', () =>
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    );
+  </script>
+</body>
+</html>

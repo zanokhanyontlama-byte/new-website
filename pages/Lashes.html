@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cordon Beauty Bar | Lashes & Brows Price List</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ── Tokens ── */
+    :root {
+      --rose:      #C9847A;
+      --blush:     #F2E6E0;
+      --champagne: #F7F0E8;
+      --bark:      #2C1F1A;
+      --mink:      #7A5C54;
+      --white:     #FDFAF7;
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'DM Sans', system-ui, sans-serif;
+      --radius:    14px;
+      --tr: 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--white);
+      color: var(--bark);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Header ── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white);
+      box-shadow: 0 1px 0 rgba(44,31,26,0.08);
+    }
+    .header-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 24px; height: 70px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .logo {
+      font-family: var(--ff-display);
+      font-size: 1.5rem; font-weight: 600;
+      color: var(--bark); letter-spacing: 0.04em; white-space: nowrap;
+    }
+    .logo span { color: var(--rose); }
+
+    nav#navbar { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+    .nav-link {
+      font-size: 0.85rem; font-weight: 500;
+      color: var(--mink); padding: 6px 10px; border-radius: 6px;
+      transition: color var(--tr), background var(--tr); white-space: nowrap;
+    }
+    .nav-link:hover, .nav-link.active { color: var(--rose); background: var(--blush); }
+    .nav-link.button {
+      background: var(--rose); color: #fff;
+      padding: 7px 14px; border-radius: 30px;
+    }
+    .nav-link.button:hover { background: var(--mink); color: #fff; }
+    .nav-link.button.outline {
+      background: transparent; color: var(--rose);
+      border: 1.5px solid var(--rose);
+    }
+    .nav-link.button.outline:hover { background: var(--rose); color: #fff; }
+
+    .hamburger {
+      display: none; flex-direction: column; justify-content: space-between;
+      width: 26px; height: 18px; cursor: pointer;
+      background: none; border: none; padding: 0; z-index: 200;
+    }
+    .hamburger span {
+      display: block; height: 2px; background: var(--bark);
+      border-radius: 2px; transition: transform var(--tr), opacity var(--tr);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    .mobile-nav {
+      display: none; position: fixed; inset: 0;
+      background: var(--white); z-index: 150;
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 24px; padding: 40px 24px;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav .nav-link {
+      font-size: 1.4rem; font-family: var(--ff-display);
+      font-weight: 400; color: var(--bark); padding: 10px 0; letter-spacing: 0.03em;
+    }
+    .mobile-nav .nav-link.button {
+      font-family: var(--ff-body); font-size: 1rem;
+      padding: 12px 32px; border-radius: 30px;
+      background: var(--rose); color: #fff;
+    }
+
+    /* ── Hero ── */
+    .page-hero {
+      background: linear-gradient(135deg, var(--bark) 0%, #4a2e27 100%);
+      padding: 60px 24px 48px;
+      text-align: center; color: #fff;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: '✨';
+      position: absolute; font-size: 180px;
+      opacity: 0.05; top: -20px; right: -20px;
+      line-height: 1; pointer-events: none;
+    }
+    .page-hero-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--rose);
+      font-weight: 500; margin-bottom: 10px;
+    }
+    .page-hero-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 300; letter-spacing: 0.02em;
+      line-height: 1.1; margin-bottom: 12px;
+    }
+    .page-hero-sub {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.95rem; max-width: 460px;
+      margin: 0 auto;
+    }
+
+    /* ── Main Layout ── */
+    .main-wrap {
+      max-width: 900px; margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── Toolbar ── */
+    .toolbar {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      align-items: center; margin-bottom: 28px;
+    }
+    .search-box {
+      flex: 1; min-width: 200px;
+      position: relative;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 10px 16px 10px 40px;
+      border: 1.5px solid var(--blush);
+      border-radius: 30px;
+      font-family: var(--ff-body);
+      font-size: 0.875rem;
+      background: #fff;
+      color: var(--bark);
+      outline: none;
+      transition: border-color var(--tr);
+    }
+    .search-box input:focus { border-color: var(--rose); }
+    .search-box input::placeholder { color: var(--mink); opacity: 0.7; }
+    .search-icon {
+      position: absolute; left: 14px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.9rem; pointer-events: none;
+      color: var(--mink);
+    }
+    .clear-btn {
+      position: absolute; right: 14px; top: 50%;
+      transform: translateY(-50%);
+      background: none; border: none; cursor: pointer;
+      color: var(--mink); font-size: 1rem; display: none;
+    }
+
+    .filter-pills {
+      display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .pill {
+      font-size: 0.78rem; font-family: var(--ff-body);
+      font-weight: 500; letter-spacing: 0.04em;
+      padding: 7px 16px; border-radius: 30px;
+      border: 1.5px solid var(--blush);
+      background: transparent; color: var(--mink);
+      cursor: pointer; white-space: nowrap;
+      transition: background var(--tr), color var(--tr), border-color var(--tr);
+    }
+    .pill:hover { border-color: var(--rose); color: var(--rose); }
+    .pill.active { background: var(--rose); border-color: var(--rose); color: #fff; }
+
+    /* ── Table ── */
+    .table-wrap {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(201,132,122,0.18);
+      box-shadow: 0 4px 28px rgba(44,31,26,0.08);
+    }
+    table {
+      width: 100%; border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    thead th {
+      background: var(--bark); color: #fff;
+      padding: 14px 20px; text-align: left;
+      font-family: var(--ff-display); font-size: 1rem;
+      font-weight: 400; letter-spacing: 0.04em;
+    }
+    thead th.price-col { text-align: right; width: 130px; }
+
+    tr.category-row td {
+      background: var(--blush);
+      color: var(--rose);
+      font-size: 0.72rem; letter-spacing: 0.18em;
+      text-transform: uppercase; font-weight: 600;
+      padding: 10px 20px;
+      border-top: 2px solid rgba(201,132,122,0.2);
+    }
+    tr.price-row td {
+      padding: 13px 20px;
+      border-bottom: 1px solid rgba(242,230,224,0.7);
+      background: #fff;
+      vertical-align: middle;
+      transition: background var(--tr);
+    }
+    tr.price-row:hover td { background: var(--champagne); }
+    tr.price-row td.price-cell {
+      text-align: right;
+      font-weight: 600;
+      color: var(--bark);
+      white-space: nowrap;
+    }
+    tr.price-row td.price-cell span {
+      display: inline-block;
+      background: var(--blush);
+      color: var(--rose);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    /* No results */
+    .no-results {
+      text-align: center; padding: 48px 24px;
+      color: var(--mink); font-size: 0.95rem;
+      display: none;
+    }
+    .no-results.show { display: block; }
+
+    /* ── Summary bar ── */
+    .summary-bar {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      flex-wrap: wrap; gap: 8px;
+    }
+    .result-count {
+      font-size: 0.8rem; color: var(--mink);
+    }
+    .result-count strong { color: var(--bark); }
+    .sort-select {
+      font-size: 0.8rem; font-family: var(--ff-body);
+      padding: 6px 12px; border-radius: 8px;
+      border: 1.5px solid var(--blush);
+      background: #fff; color: var(--mink);
+      outline: none; cursor: pointer;
+      transition: border-color var(--tr);
+    }
+    .sort-select:focus { border-color: var(--rose); }
+
+    /* ── Book CTA ── */
+    .book-cta {
+      margin-top: 48px;
+      background: linear-gradient(135deg, var(--blush) 0%, var(--champagne) 100%);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      text-align: center;
+    }
+    .book-cta p.eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--rose);
+      font-weight: 500; margin-bottom: 8px;
+    }
+    .book-cta h3 {
+      font-family: var(--ff-display);
+      font-size: 1.8rem; font-weight: 300;
+      color: var(--bark); margin-bottom: 10px;
+    }
+    .book-cta p.sub {
+      color: var(--mink); font-size: 0.9rem; margin-bottom: 24px;
+    }
+    .book-btn {
+      display: inline-block;
+      padding: 13px 36px; background: var(--rose);
+      color: #fff; border-radius: 30px;
+      font-size: 0.875rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: background var(--tr), transform var(--tr);
+    }
+    .book-btn:hover { background: var(--mink); transform: translateY(-2px); }
+
+    /* ── Footer ── */
+    footer {
+      background: #1a100d;
+      color: rgba(255,255,255,0.6);
+      padding: 36px 24px; text-align: center; font-size: 0.82rem;
+    }
+    footer .footer-brand {
+      font-family: var(--ff-display); font-size: 1.05rem;
+      color: rgba(255,255,255,0.85); margin-bottom: 6px;
+    }
+    footer .footer-credit { margin-bottom: 14px; }
+    footer .footer-highlight { color: var(--rose); }
+    .footer-social { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+    .footer-link { color: rgba(255,255,255,0.5); transition: color var(--tr); }
+    .footer-link:hover { color: var(--rose); }
+
+    /* ── Scroll-to-top ── */
+    #scroll-top {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 46px; height: 46px;
+      background: var(--rose); color: #fff;
+      border: none; border-radius: 50%; font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(201,132,122,0.4);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity var(--tr), transform var(--tr); z-index: 90;
+    }
+    #scroll-top.visible { opacity: 1; pointer-events: auto; }
+    #scroll-top:hover { transform: scale(1.1); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      nav#navbar { display: none; }
+      .hamburger { display: flex; }
+      .toolbar { flex-direction: column; align-items: stretch; }
+      .filter-pills { justify-content: flex-start; }
+      thead th.price-col { width: 90px; }
+      tr.price-row td, thead th { padding: 11px 14px; }
+      .book-cta { padding: 28px 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header>
+    <div class="header-inner">
+      <a href="../index.html" class="logo"><<span><</span></a>
+      <nav id="navbar" aria-label="Main navigation">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="About.html" class="nav-link">About</a>
+        <a href="Services.html" class="nav-link active">Services</a>
+        <a href="Pricelist.html" class="nav-link">Price List</a>
+        <a href="Testimonials.html" class="nav-link">Testimonials</a>
+        <a href="Contact.html" class="nav-link">Contact</a>
+        <a href="Careers.html" class="nav-link button outline">Careers</a>
+        <a href="Book-online.html" class="nav-link button">Book Online</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Mobile Nav Overlay ── -->
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+    <a href="../index.html" class="nav-link">Home</a>
+    <a href="About.html" class="nav-link">About</a>
+    <a href="Services.html" class="nav-link active">Services</a>
+    <a href="Pricelist.html" class="nav-link">Price List</a>
+    <a href="Testimonials.html" class="nav-link">Testimonials</a>
+    <a href="Contact.html" class="nav-link">Contact</a>
+    <a href="Careers.html" class="nav-link">Careers</a>
+    <a href="Book-online.html" class="nav-link button">Book Online</a>
+  </nav>
+
+  <!-- ── Page Hero ── -->
+  <div class="page-hero">
+    <p class="page-hero-eyebrow">Price List</p>
+    <h1 class="page-hero-title">Lashes &amp; Brows</h1>
+    <p class="page-hero-sub">Professional lash &amp; brow services — from classic extensions to lamination. All prices in ZAR.</p>
+  </div>
+
+  <!-- ── Main Content ── -->
+  <main class="main-wrap">
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="search" id="search-input" placeholder="Search services e.g. volume, hybrid, brow…" autocomplete="off">
+        <button class="clear-btn" id="clear-btn" aria-label="Clear search">✕</button>
+      </div>
+      <div class="filter-pills" role="group" aria-label="Filter by category" id="filter-pills">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+
+    <!-- Summary bar -->
+    <div class="summary-bar">
+      <p class="result-count" id="result-count"></p>
+      <select class="sort-select" id="sort-select" aria-label="Sort prices">
+        <option value="default">Default order</option>
+        <option value="asc">Price: low → high</option>
+        <option value="desc">Price: high → low</option>
+      </select>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrap">
+      <table id="lashes-table" aria-label="Lashes and Brows price list">
+        <thead>
+          <tr>
+            <th class="service-col">Service</th>
+            <th class="price-col">Price (R)</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <!-- Injected by JS -->
+        </tbody>
+      </table>
+      <div class="no-results" id="no-results">
+        No services found for "<span id="no-results-term"></span>". Try a different search or filter.
+      </div>
+    </div>
+
+    <!-- Book CTA -->
+    <div class="book-cta">
+      <p class="eyebrow">Ready to book?</p>
+      <h3>Let's Frame Those Eyes</h3>
+      <p class="sub">Choose your service above and secure your appointment online in minutes.</p>
+      <a href="Book-online.html" class="book-btn">Book Online</a>
+    </div>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer id="footer">
+    <div class="footer-container">
+      <p class="footer-brand">Cordon Beauty Bar</p>
+      <p class="footer-credit">
+        Developed &amp; Maintained by <span class="footer-highlight">Zukhanye Ntlama</span>
+      </p>
+      <div class="footer-social">
+        <a href="mailto:info@cordonbeauty.co.za" class="footer-link">📧 Email</a>
+        <a href="tel:+27213566776" class="footer-link">📞 Call</a>
+        <a href="https://www.linkedin.com/in/zukhanye-ntlama" target="_blank" rel="noopener" class="footer-link">🌐 LinkedIn</a>
+      </div>
+      <p style="margin-top:16px;font-size:0.75rem;">© 2026 Cordon Beauty Bar · All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <!-- ── Scroll-to-top ── -->
+  <button id="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <!-- ════════ JavaScript ════════ -->
+  <script>
+    /* ── Data ── */
+    const priceData = [
+      /* Individual Lashes */
+      { category: 'Individual Lashes', service: 'Volume Lashes',                    price: 650,  extra: null },
+      { category: 'Individual Lashes', service: 'Volume Lash Refill (2–3 weeks)',   price: 400,  extra: null },
+      { category: 'Individual Lashes', service: 'Wispy Lashes',                     price: 550,  extra: null },
+      { category: 'Individual Lashes', service: 'Wispy Lash Refill (2–3 weeks)',    price: 350,  extra: null },
+      { category: 'Individual Lashes', service: 'Hybrid Lashes',                    price: 500,  extra: null },
+      { category: 'Individual Lashes', service: 'Hybrid Lash Refill (2–3 weeks)',   price: 300,  extra: null },
+      { category: 'Individual Lashes', service: 'Classic Lashes',                   price: 400,  extra: null },
+      { category: 'Individual Lashes', service: 'Classic Lash Refill (2–3 weeks)',  price: 200,  extra: null },
+      /* Cluster Lashes */
+      { category: 'Cluster Lashes', service: 'Volume Cluster Lashes',               price: 450,  extra: null },
+      { category: 'Cluster Lashes', service: 'Volume Cluster Refill (2–3 weeks)',   price: 250,  extra: null },
+      { category: 'Cluster Lashes', service: 'Hybrid Cluster Lashes',               price: 400,  extra: null },
+      { category: 'Cluster Lashes', service: 'Hybrid Cluster Refill (2–3 weeks)',   price: 200,  extra: null },
+      { category: 'Cluster Lashes', service: 'Classic Cluster Lashes',              price: 300,  extra: null },
+      { category: 'Cluster Lashes', service: 'Classic Cluster Refill (2–3 weeks)',  price: 150,  extra: null },
+      /* Extras */
+      { category: 'Extras', service: 'Bottom Lash Extensions',   price: null, extra: '+150' },
+      { category: 'Extras', service: 'Spikes Lash Extensions',   price: null, extra: '+100' },
+      { category: 'Extras', service: 'Cat Eye Lash Extensions',  price: null, extra: '+50'  },
+      { category: 'Extras', service: 'Doll Eye Lash Extensions', price: null, extra: '+50'  },
+      { category: 'Extras', service: 'Lash Removal',             price: 100,  extra: null   },
+      /* Brows */
+      { category: 'Brows', service: 'Brow Shape',      price: 100, extra: null },
+      { category: 'Brows', service: 'Brow Tint',       price: 100, extra: null },
+      { category: 'Brows', service: 'Brow Lamination', price: 250, extra: null },
+    ];
+
+    const categories = ['All', ...new Set(priceData.map(d => d.category))];
+
+    /* ── State ── */
+    let activeFilter = 'All';
+    let searchTerm   = '';
+    let sortOrder    = 'default';
+
+    /* ── Build filter pills ── */
+    const pillsContainer = document.getElementById('filter-pills');
+    categories.forEach(cat => {
+      const btn = document.createElement('button');
+      btn.className = 'pill' + (cat === 'All' ? ' active' : '');
+      btn.textContent = cat;
+      btn.setAttribute('data-filter', cat);
+      btn.addEventListener('click', () => {
+        activeFilter = cat;
+        document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        render();
+      });
+      pillsContainer.appendChild(btn);
+    });
+
+    /* ── Render table ── */
+    function render() {
+      const tbody = document.getElementById('table-body');
+      tbody.innerHTML = '';
+
+      // Filter
+      let data = priceData.filter(row => {
+        const matchCat    = activeFilter === 'All' || row.category === activeFilter;
+        const matchSearch = !searchTerm ||
+          row.service.toLowerCase().includes(searchTerm) ||
+          row.category.toLowerCase().includes(searchTerm);
+        return matchCat && matchSearch;
+      });
+
+      // Sort (extras with no numeric price sort to bottom)
+      if (sortOrder !== 'default') {
+        data = [...data].sort((a, b) => {
+          const pa = a.price ?? 0;
+          const pb = b.price ?? 0;
+          return sortOrder === 'asc' ? pa - pb : pb - pa;
+        });
+      }
+
+      // Update count
+      const countEl = document.getElementById('result-count');
+      countEl.innerHTML = `Showing <strong>${data.length}</strong> service${data.length !== 1 ? 's' : ''}`;
+
+      if (data.length === 0) {
+        document.getElementById('no-results').classList.add('show');
+        document.getElementById('no-results-term').textContent = searchTerm || activeFilter;
+        return;
+      }
+      document.getElementById('no-results').classList.remove('show');
+
+      // Group by category (only when default order)
+      if (sortOrder === 'default') {
+        const grouped = {};
+        data.forEach(row => {
+          if (!grouped[row.category]) grouped[row.category] = [];
+          grouped[row.category].push(row);
+        });
+        Object.entries(grouped).forEach(([cat, rows]) => {
+          const catRow = document.createElement('tr');
+          catRow.className = 'category-row';
+          catRow.innerHTML = `<td colspan="2">${cat}</td>`;
+          tbody.appendChild(catRow);
+          rows.forEach(row => appendRow(tbody, row));
+        });
+      } else {
+        data.forEach(row => appendRow(tbody, row));
+      }
+    }
+
+    function appendRow(tbody, row) {
+      const tr = document.createElement('tr');
+      tr.className = 'price-row';
+
+      // Highlight search term
+      let serviceName = row.service;
+      if (searchTerm) {
+        const re = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+        serviceName = serviceName.replace(re, '<mark style="background:rgba(201,132,122,0.25);border-radius:3px;padding:0 2px;">$1</mark>');
+      }
+
+      const priceDisplay = row.extra
+        ? `<span>R ${row.extra}</span>`
+        : `<span>R ${row.price.toLocaleString()}</span>`;
+
+      tr.innerHTML = `
+        <td>${serviceName}</td>
+        <td class="price-cell">${priceDisplay}</td>
+      `;
+      tbody.appendChild(tr);
+    }
+
+    /* ── Search ── */
+    const searchInput = document.getElementById('search-input');
+    const clearBtn    = document.getElementById('clear-btn');
+
+    searchInput.addEventListener('input', () => {
+      searchTerm = searchInput.value.trim().toLowerCase();
+      clearBtn.style.display = searchTerm ? 'block' : 'none';
+      render();
+    });
+
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      searchTerm = '';
+      clearBtn.style.display = 'none';
+      searchInput.focus();
+      render();
+    });
+
+    /* ── Sort ── */
+    document.getElementById('sort-select').addEventListener('change', e => {
+      sortOrder = e.target.value;
+      render();
+    });
+
+    /* ── Hamburger ── */
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      mobileNav.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+    document.addEventListener('click', e => {
+      if (mobileNav.classList.contains('open') &&
+          !mobileNav.contains(e.target) &&
+          !hamburger.contains(e.target)) {
+        hamburger.classList.remove('open');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    /* ── Scroll-to-top ── */
+    const scrollBtn = document.getElementById('scroll-top');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    /* ── Init ── */
+    render();
+  </script>
+</body>
+</html>

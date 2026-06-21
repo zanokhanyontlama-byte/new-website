@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cordon Beauty Bar | Book Online</title>
+  <link rel="stylesheet" href="../CSS/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- ════════ Page-scoped styles (Book Online page only) ════════ -->
+  <!-- Namespaced under body.book-page so these rules never touch the
+       shared header / nav / footer styling in ../CSS/style.css -->
+  <style>
+    body.book-page {
+      --bk-rose:      #C9847A;
+      --bk-blush:     #F2E6E0;
+      --bk-champagne: #F7F0E8;
+      --bk-bark:      #2C1F1A;
+      --bk-mink:      #7A5C54;
+      --bk-white:     #FDFAF7;
+      --bk-success:   #5C8A6B;
+      --bk-error:     #C9544A;
+      --bk-ff-display: 'Cormorant Garamond', Georgia, serif;
+      --bk-ff-body:    'DM Sans', system-ui, sans-serif;
+      --bk-radius:    14px;
+      --bk-tr: 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    body.book-page {
+      font-family: var(--bk-ff-body);
+      color: var(--bk-bark);
+      background: var(--bk-white);
+      margin: 0;
+    }
+
+    /* ── Header & Navigation ── */
+    body.book-page header#main-header-book {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bk-white);
+      box-shadow: 0 1px 0 rgba(44,31,26,0.08);
+    }
+    body.book-page header#main-header-book .header-container {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 24px; height: 70px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    body.book-page .logo-left { height: 140px; width: auto; display: block; }
+    body.book-page header#main-header-book hr.divider {
+      border: none; height: 1px;
+      background: rgba(201,132,122,0.18);
+      margin: 0;
+    }
+    body.book-page nav#navbar {
+      display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+    }
+    body.book-page .nav-link {
+      font-family: var(--bk-ff-body);
+      font-size: 0.85rem; font-weight: 500;
+      color: var(--bk-mink); padding: 6px 10px; border-radius: 6px;
+      transition: color var(--bk-tr), background var(--bk-tr); white-space: nowrap;
+    }
+    body.book-page .nav-link:hover,
+    body.book-page .nav-link.active { color: var(--bk-rose); background: var(--bk-blush); }
+    body.book-page .nav-link.button {
+      background: var(--bk-rose); color: #fff;
+      padding: 7px 14px; border-radius: 30px;
+    }
+    body.book-page .nav-link.button:hover { background: var(--bk-mink); color: #fff; }
+    body.book-page .nav-link.button.active { background: var(--bk-mink); }
+
+    /* ── Hamburger ── */
+    body.book-page .bk-hamburger {
+      display: none; flex-direction: column; justify-content: space-between;
+      width: 26px; height: 18px; cursor: pointer;
+      background: none; border: none; padding: 0; z-index: 200;
+    }
+    body.book-page .bk-hamburger span {
+      display: block; height: 2px; background: var(--bk-bark);
+      border-radius: 2px; transition: transform var(--bk-tr), opacity var(--bk-tr);
+    }
+    body.book-page .bk-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    body.book-page .bk-hamburger.open span:nth-child(2) { opacity: 0; }
+    body.book-page .bk-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* ── Mobile Nav Overlay ── */
+    body.book-page .bk-mobile-nav {
+      display: none; position: fixed; inset: 0;
+      background: var(--bk-white); z-index: 150;
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 22px; padding: 40px 24px;
+    }
+    body.book-page .bk-mobile-nav.open { display: flex; }
+    body.book-page .bk-mobile-nav .bk-mobile-link {
+      font-size: 1.35rem; font-family: var(--bk-ff-display);
+      font-weight: 400; color: var(--bk-bark); padding: 8px 0; letter-spacing: 0.03em;
+    }
+    body.book-page .bk-mobile-nav .bk-mobile-link.active { color: var(--bk-rose); }
+    body.book-page .bk-mobile-nav .bk-mobile-button {
+      font-family: var(--bk-ff-body); font-size: 1rem;
+      padding: 12px 32px; border-radius: 30px;
+      background: var(--bk-rose); color: #fff;
+    }
+
+    /* ── Page hero ── */
+    body.book-page .bk-hero {
+      background: linear-gradient(135deg, var(--bk-bark) 0%, #4a2e27 100%);
+      padding: 52px 24px 40px; text-align: center; color: #fff;
+      position: relative; overflow: hidden;
+    }
+    body.book-page .bk-hero::before {
+      content: '✨'; position: absolute; font-size: 170px;
+      opacity: 0.05; top: -20px; right: -20px; line-height: 1; pointer-events: none;
+    }
+    body.book-page .bk-hero-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--bk-rose); font-weight: 500; margin-bottom: 10px;
+    }
+    body.book-page .bk-hero-title {
+      font-family: var(--bk-ff-display);
+      font-size: clamp(1.9rem, 5vw, 2.9rem);
+      font-weight: 300; letter-spacing: 0.02em; line-height: 1.1; margin-bottom: 10px;
+    }
+    body.book-page .bk-hero-sub {
+      color: rgba(255,255,255,0.65); font-size: 0.92rem;
+      max-width: 460px; margin: 0 auto;
+    }
+
+    /* ── Booking section ── */
+    body.book-page #booking-section {
+      max-width: 640px; margin: -28px auto 0; position: relative; z-index: 10;
+      background: #fff; padding: 36px 30px 40px;
+      border-radius: var(--bk-radius);
+      box-shadow: 0 12px 40px rgba(44,31,26,0.14);
+    }
+    body.book-page .section-title {
+      font-family: var(--bk-ff-display);
+      font-size: 1.7rem; font-weight: 300; color: var(--bk-bark);
+      text-align: center; margin-bottom: 6px;
+    }
+    body.book-page .section-sub {
+      text-align: center; font-size: 0.85rem; color: var(--bk-mink); margin-bottom: 26px;
+    }
+
+    body.book-page .form-container { display: flex; flex-direction: column; gap: 14px; }
+
+    body.book-page .bk-field-group { margin-bottom: 2px; }
+    body.book-page .bk-label {
+      display: block; font-size: 0.78rem; font-weight: 500;
+      color: var(--bk-mink); margin-bottom: 6px; letter-spacing: 0.02em;
+    }
+
+    body.book-page .search-input,
+    body.book-page .form-input,
+    body.book-page select#service,
+    body.book-page select#time {
+      width: 100%; padding: 12px 16px;
+      border: 1.5px solid var(--bk-blush); border-radius: 10px;
+      font-family: var(--bk-ff-body); font-size: 0.9rem;
+      background: #fff; color: var(--bk-bark);
+      outline: none; transition: border-color var(--bk-tr), box-shadow var(--bk-tr);
+    }
+    body.book-page .search-input::placeholder,
+    body.book-page .form-input::placeholder { color: var(--bk-mink); opacity: 0.65; }
+    body.book-page .search-input:focus,
+    body.book-page .form-input:focus,
+    body.book-page select#service:focus,
+    body.book-page select#time:focus {
+      border-color: var(--bk-rose);
+      box-shadow: 0 0 0 3px rgba(201,132,122,0.15);
+    }
+    body.book-page select#service { max-height: 320px; }
+    body.book-page select#service optgroup { font-weight: 600; color: var(--bk-bark); font-style: normal; }
+    body.book-page select#service option { color: var(--bk-bark); font-weight: 400; padding: 4px; }
+
+    body.book-page .form-input.bk-invalid,
+    body.book-page select.bk-invalid {
+      border-color: var(--bk-error);
+      box-shadow: 0 0 0 3px rgba(201,84,74,0.12);
+    }
+    body.book-page .bk-field-error {
+      font-size: 0.76rem; color: var(--bk-error); margin-top: 6px; display: none;
+    }
+    body.book-page .bk-field-error.show { display: block; }
+
+    body.book-page .cta-button {
+      display: inline-block; width: 100%;
+      background: var(--bk-rose); color: #fff;
+      padding: 13px 30px; border-radius: 30px;
+      font-family: var(--bk-ff-body);
+      font-size: 0.875rem; font-weight: 500;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      border: none; cursor: pointer; text-align: center;
+      transition: background var(--bk-tr), transform var(--bk-tr);
+    }
+    body.book-page .cta-button:hover { background: var(--bk-mink); transform: translateY(-2px); }
+    body.book-page .cta-button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    body.book-page .cta-button.secondary {
+      background: var(--bk-champagne); color: var(--bk-rose);
+      border: 1.5px solid var(--bk-blush);
+    }
+    body.book-page .cta-button.secondary:hover { background: var(--bk-blush); transform: none; }
+
+    /* ── Summary box ── */
+    body.book-page .summary-box {
+      margin-top: 4px; padding: 16px 18px;
+      background: var(--bk-champagne);
+      border-radius: var(--bk-radius);
+      border: 1px solid rgba(201,132,122,0.18);
+    }
+    body.book-page .summary-box p {
+      margin: 4px 0; font-size: 0.85rem; color: var(--bk-mink);
+    }
+    body.book-page .summary-box p strong { color: var(--bk-bark); }
+    body.book-page .summary-empty { color: var(--bk-mink); font-style: italic; }
+
+    body.book-page .bk-selected-list { list-style: none; margin-top: 8px; display: flex; flex-direction: column; gap: 6px; }
+    body.book-page .bk-selected-item {
+      display: flex; justify-content: space-between; align-items: center;
+      background: #fff; border-radius: 8px; padding: 8px 12px;
+      font-size: 0.84rem; color: var(--bk-bark);
+      border: 1px solid rgba(201,132,122,0.14);
+    }
+    body.book-page .bk-selected-item .bk-item-price { color: var(--bk-rose); font-weight: 600; white-space: nowrap; }
+    body.book-page .bk-remove-btn {
+      background: none; border: none; color: var(--bk-mink);
+      cursor: pointer; font-size: 0.95rem; margin-left: 10px; line-height: 1;
+      transition: color var(--bk-tr);
+    }
+    body.book-page .bk-remove-btn:hover { color: var(--bk-error); }
+
+    body.book-page .summary-total-row {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 10px; padding-top: 10px;
+      border-top: 1px dashed rgba(201,132,122,0.3);
+      font-size: 0.95rem;
+    }
+    body.book-page .summary-total-row strong { color: var(--bk-bark); font-family: var(--bk-ff-display); font-size: 1.2rem; }
+
+    body.book-page hr.bk-divider {
+      border: none; height: 1px; background: rgba(201,132,122,0.18);
+      margin: 22px 0 6px;
+    }
+
+    /* ── Success / status message ── */
+    body.book-page .bk-status-msg {
+      max-width: 100%; margin: 0 0 16px;
+      border-radius: var(--bk-radius);
+      padding: 14px 18px; font-size: 0.88rem; font-weight: 500;
+      text-align: center; display: none;
+      align-items: center; justify-content: center; gap: 8px;
+    }
+    body.book-page .bk-status-msg.show { display: flex; }
+    body.book-page .bk-status-msg.success {
+      background: rgba(92,138,107,0.1); border: 1.5px solid var(--bk-success); color: var(--bk-success);
+    }
+    body.book-page .bk-status-msg.error {
+      background: rgba(201,84,74,0.08); border: 1.5px solid var(--bk-error); color: var(--bk-error);
+    }
+
+    /* ── Footer ── */
+    body.book-page footer#footer {
+      background: #1a100d; color: rgba(255,255,255,0.6);
+      padding: 36px 24px; text-align: center; font-size: 0.82rem; margin-top: 56px;
+    }
+    body.book-page footer .footer-brand {
+      font-family: var(--bk-ff-display); font-size: 1.05rem;
+      color: rgba(255,255,255,0.85); margin-bottom: 6px;
+    }
+    body.book-page footer .footer-credit { margin-bottom: 14px; }
+    body.book-page footer .footer-highlight { color: var(--bk-rose); }
+    body.book-page .footer-social { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+    body.book-page footer .footer-link { color: rgba(255,255,255,0.5); transition: color var(--bk-tr); }
+    body.book-page footer .footer-link:hover { color: var(--bk-rose); }
+
+    /* ── Scroll-to-top ── */
+    body.book-page #bk-scroll-top {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 46px; height: 46px; background: var(--bk-rose); color: #fff;
+      border: none; border-radius: 50%; font-size: 1.2rem; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(201,132,122,0.4);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity var(--bk-tr), transform var(--bk-tr); z-index: 90;
+    }
+    body.book-page #bk-scroll-top.visible { opacity: 1; pointer-events: auto; }
+    body.book-page #bk-scroll-top:hover { transform: scale(1.1); }
+
+    /* ── Responsive: Tablet & small laptop ── */
+    @media (max-width: 1024px) {
+      body.book-page header#main-header-book .header-container { padding: 0 18px; }
+      body.book-page nav#navbar { gap: 2px; }
+      body.book-page .nav-link { font-size: 0.8rem; padding: 6px 8px; }
+      body.book-page #booking-section { max-width: 560px; padding: 32px 26px 36px; }
+    }
+    /* ── Responsive: Phone & portrait tablet ── */
+    @media (max-width: 768px) {
+      body.book-page nav#navbar { display: none; }
+      body.book-page .bk-hamburger { display: flex; }
+      body.book-page .bk-hero { padding: 44px 20px 56px; }
+      body.book-page #booking-section { margin: -36px 16px 0; padding: 28px 20px 32px; }
+      body.book-page .search-input, body.book-page .form-input,
+      body.book-page select#service, body.book-page select#time { padding: 11px 14px; font-size: 0.88rem; }
+    }
+    /* ── Responsive: Small phones ── */
+    @media (max-width: 480px) {
+      body.book-page .logo-left { height: 34px; }
+      body.book-page header#main-header-book .header-container { height: 60px; padding: 0 16px; }
+      body.book-page .bk-hero { padding: 38px 16px 50px; }
+      body.book-page .bk-hero-sub { font-size: 0.85rem; }
+      body.book-page #booking-section { margin: -32px 12px 0; padding: 24px 16px 28px; }
+      body.book-page .section-title { font-size: 1.45rem; }
+      body.book-page .bk-mobile-nav .bk-mobile-link { font-size: 1.15rem; }
+      body.book-page #bk-scroll-top { width: 40px; height: 40px; bottom: 20px; right: 20px; font-size: 1.05rem; }
+      body.book-page .bk-selected-item { font-size: 0.78rem; padding: 7px 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      body.book-page *, body.book-page *::before, body.book-page *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body id="page-body" class="book-page">
+
+
+  <!-- Header -->
+  <header id="main-header">
+    <div class="header-container">
+      <img src="../cordon images/cordon logo 23.png" alt="Cordon Beauty Bar Logo" class="logo-left">
+      <nav id="navbar">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="./About.html" class="nav-link">About</a>
+        <a href="./Services.html" class="nav-link">Services</a>
+        <a href="./Pricelist.html" class="nav-link">Price List</a>
+        <a href="./Testimonials.html" class="nav-link">Testimonials</a>
+        <a href="./Contact.html" class="nav-link">Contact</a>
+        <a href="./Careers.html" class="nav-link button">Careers</a>
+        <a href="./Book-online.html" class="nav-link button">Book Online</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navbar">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <hr class="divider">
+  </header>
+  <!-- ── Mobile Nav Overlay ── -->
+  <nav class="bk-mobile-nav" id="bk-mobile-nav" aria-label="Mobile navigation">
+    <a href="../index.html" class="bk-mobile-link">Home</a>
+    <a href="./About.html" class="bk-mobile-link">About</a>
+    <a href="./Services.html" class="bk-mobile-link">Services</a>
+    <a href="./Pricelist.html" class="bk-mobile-link">Price List</a>
+    <a href="./Testimonials.html" class="bk-mobile-link">Testimonials</a>
+    <a href="./Contact.html" class="bk-mobile-link">Contact</a>
+    <a href="./Careers.html" class="bk-mobile-link">Careers</a>
+    <a href="./Book-online.html" class="bk-mobile-link active bk-mobile-button">Book Online</a>
+  </nav>
+
+  <!-- Page Hero -->
+  <div class="bk-hero">
+    <p class="bk-hero-eyebrow">Book Online</p>
+    <h1 class="bk-hero-title">Book Your Appointment</h1>
+    <p class="bk-hero-sub">Pick your services, choose a time that works for you, and we'll take care of the rest.</p>
+  </div>
+
+  <!-- Booking Section -->
+  <section id="booking-section">
+    <h2 class="section-title">Your Booking</h2>
+    <p class="section-sub">Add one or more services below, then fill in your details.</p>
+
+    <div class="bk-status-msg" id="bk-status-msg"></div>
+
+    <form id="booking-form" class="form-container" novalidate>
+
+      <!-- Service picker -->
+      <div class="bk-field-group">
+        <label class="bk-label" for="searchInput">Search services</label>
+        <input type="text" id="searchInput" class="search-input" placeholder="e.g. gel, lashes, wig, plaiting…" autocomplete="off">
+      </div>
+
+      <div class="bk-field-group">
+        <label class="bk-label" for="service">Select a Service</label>
+        <select id="service" class="form-input">
+          <option value="">Select a Service</option>
+          <!-- Options injected by JS from the full, deduplicated price list -->
+        </select>
+      </div>
+
+      <button type="button" class="cta-button secondary" id="addService">+ Add Service</button>
+
+      <div class="summary-box" id="summaryBox">
+        <p><strong>Selected Items:</strong> <span id="itemCount">0</span></p>
+        <p class="summary-empty" id="summaryEmptyMsg">No services added yet.</p>
+        <ul class="bk-selected-list" id="bk-selected-list"></ul>
+        <div class="summary-total-row" id="summaryTotalRow" style="display:none;">
+          <span>Total</span>
+          <strong>R<span id="totalPrice">0</span></strong>
+        </div>
+      </div>
+      <p class="bk-field-error" id="bk-error-services">Please add at least one service.</p>
+
+      <hr class="bk-divider">
+
+      <div class="bk-field-group">
+        <label class="bk-label" for="date">Preferred Date</label>
+        <input type="date" id="date" class="form-input" required>
+        <p class="bk-field-error" id="bk-error-date">Please choose a date.</p>
+      </div>
+
+      <div class="bk-field-group">
+        <label class="bk-label" for="time">Preferred Time</label>
+        <select id="time" class="form-input" required></select>
+        <p class="bk-field-error" id="bk-error-time">Please choose a date first, then a time.</p>
+      </div>
+
+      <div class="bk-field-group">
+        <label class="bk-label" for="name">Your Name</label>
+        <input type="text" id="name" class="form-input" placeholder="Your Name" required>
+        <p class="bk-field-error" id="bk-error-name">Please enter your name.</p>
+      </div>
+
+      <div class="bk-field-group">
+        <label class="bk-label" for="email">Your Email</label>
+        <input type="email" id="email" class="form-input" placeholder="Your Email" required>
+        <p class="bk-field-error" id="bk-error-email">Please enter a valid email address.</p>
+      </div>
+
+      <div class="bk-field-group">
+        <label class="bk-label" for="phone">Your Phone Number</label>
+        <input type="tel" id="phone" class="form-input" placeholder="Your Phone Number" required>
+        <p class="bk-field-error" id="bk-error-phone">Please enter your phone number.</p>
+      </div>
+
+      <button type="submit" class="cta-button" id="bk-submit-btn">Confirm Booking</button>
+    </form>
+  </section>
+
+  <footer id="footer">
+    <div class="footer-container">
+      <p class="footer-brand">© 2026 Cordon Beauty Bar · All Rights Reserved</p>
+
+      <p class="footer-credit">
+        Developed &amp; Maintained by
+        <span class="footer-highlight">Zukhanye Ntlama</span>
+      </p>
+
+      <div class="footer-social">
+        <a href="mailto:info@cordonbeauty.co.za" class="footer-link">📧 Email</a>
+        <a href="tel:+27213566776" class="footer-link">📞 Call</a>
+        <a href="https://www.linkedin.com/in/zukhanye-ntlama" target="_blank" class="footer-link">🌐 LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Scroll-to-top ── -->
+  <button id="bk-scroll-top" aria-label="Scroll to top">↑</button>
+
+  <!-- ════════ JavaScript ════════ -->
+  <script>
+    /* ════════════════════════════════════════════════════
+       Formspree configuration
+       ════════════════════════════════════════════════════
+       Submissions POST as JSON to this endpoint. Formspree
+       emails the data straight to the inbox(es) linked on
+       this form in your Formspree dashboard.
+    ════════════════════════════════════════════════════ */
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xzdlppba';
+
+    /* ── Full price list (deduplicated, grouped by section → category) ── */
+    const priceData = [
+      /* ───────── Nails ───────── */
+      { section: 'Nails', category: 'Gel', service: 'Gel Overlay', price: 250 },
+      { section: 'Nails', category: 'Gel', service: 'Gel Overlay + Tips', price: 300 },
+      { section: 'Nails', category: 'Gel', service: 'Gel Overlay Ombre + Tips', price: 400 },
+      { section: 'Nails', category: 'Gel', service: 'Gel Overlay French + Tips', price: 400 },
+      { section: 'Nails', category: 'Gel', service: 'Gel Overlay + Tips Refill (3–4 weeks)', price: 200 },
+
+      { section: 'Nails', category: 'Polygel', service: 'Polygel Overlay', price: 350 },
+      { section: 'Nails', category: 'Polygel', service: 'Polygel Overlay full set + Tips', price: 400 },
+      { section: 'Nails', category: 'Polygel', service: 'Polygel full set + Gel Polish (Tips)', price: 450 },
+      { section: 'Nails', category: 'Polygel', service: 'Polygel Sculpture', price: 400 },
+      { section: 'Nails', category: 'Polygel', service: 'Polygel Sculpture + Gel Polish', price: 450 },
+      { section: 'Nails', category: 'Polygel', service: 'Polygel Ombre full set + Tips', price: 500 },
+      { section: 'Nails', category: 'Polygel', service: 'Polygel French full set + Tips', price: 500 },
+      { section: 'Nails', category: 'Polygel', service: 'Polygel Refill (3–6 weeks)', price: 250 },
+      { section: 'Nails', category: 'Polygel', service: 'Polygel Refill + Tips (3–6 weeks)', price: 300 },
+      { section: 'Nails', category: 'Polygel', service: 'Polygel Sculpture Refill (4–6 weeks)', price: 350 },
+
+      { section: 'Nails', category: 'Acrylic', service: 'Acrylic Overlay', price: 300 },
+      { section: 'Nails', category: 'Acrylic', service: 'Acrylic Overlay + Tips', price: 350 },
+      { section: 'Nails', category: 'Acrylic', service: 'Acrylic Overlay + Gel Polish', price: 350 },
+      { section: 'Nails', category: 'Acrylic', service: 'Acrylic Overlay + Gel Polish (Tips)', price: 400 },
+      { section: 'Nails', category: 'Acrylic', service: 'Acrylic Overlay Ombre (Tips)', price: 450 },
+      { section: 'Nails', category: 'Acrylic', service: 'Acrylic Overlay French (Tips)', price: 450 },
+      { section: 'Nails', category: 'Acrylic', service: 'Acrylic Refill + Gel Polish (No Tips)', price: 250 },
+      { section: 'Nails', category: 'Acrylic', service: 'Acrylic Refill + Gel Polish (Tips)', price: 300 },
+
+      { section: 'Nails', category: 'Pedicure', service: 'Gel Overlay (toes)', price: 200 },
+      { section: 'Nails', category: 'Pedicure', service: 'Acrylic Overlay (toes)', price: 250 },
+      { section: 'Nails', category: 'Pedicure', service: 'Polygel Overlay (toes)', price: 300 },
+      { section: 'Nails', category: 'Pedicure', service: 'Soak, file, buff + Gel Overlay', price: 300 },
+      { section: 'Nails', category: 'Pedicure', service: 'Soak, file, buff + Acrylic Overlay', price: 350 },
+      { section: 'Nails', category: 'Pedicure', service: 'Soak, file, buff + Polygel Overlay', price: 350 },
+      { section: 'Nails', category: 'Pedicure', service: 'Soak, file, buff, exfoliation & Massage', price: 350 },
+      { section: 'Nails', category: 'Pedicure', service: 'Soak, file, buff, exfoliation & Massage + Gel Overlay', price: 500 },
+      { section: 'Nails', category: 'Pedicure', service: 'Soak, file, buff, exfoliation & Massage + Acrylic Overlay', price: 550 },
+      { section: 'Nails', category: 'Pedicure', service: 'Soak, file, buff, exfoliation & Massage + Polygel Overlay', price: 550 },
+
+      { section: 'Nails', category: 'Extras', service: 'Tips (Hands)', price: 100, prefix: '+' },
+      { section: 'Nails', category: 'Extras', service: 'Tips (Toes)', price: 50, prefix: '+' },
+      { section: 'Nails', category: 'Extras', service: 'French Pedi', price: 100, prefix: '+' },
+      { section: 'Nails', category: 'Extras', service: 'Nail Soak Off', price: 100, prefix: '+' },
+      { section: 'Nails', category: 'Extras', service: 'Nail Art (per nail)', price: 20, prefix: '+' },
+      { section: 'Nails', category: 'Extras', service: 'Nail Art (all hand nails)', price: 150 },
+      { section: 'Nails', category: 'Extras', service: 'French Mani design', price: 100, prefix: '+' },
+      { section: 'Nails', category: 'Extras', service: 'Ombre nails design', price: 100, prefix: '+' },
+      { section: 'Nails', category: 'Extras', service: 'Cat-eye nails design', price: 100, prefix: '+' },
+
+      /* ───────── Make-Up ───────── */
+      { section: 'Make-Up', category: 'Make-Up', service: 'Full Glam Makeup', price: 750 },
+      { section: 'Make-Up', category: 'Make-Up', service: 'Soft Glam Makeup', price: 650 },
+      { section: 'Make-Up', category: 'Make-Up', service: 'Natural Glam Makeup', price: 550 },
+      { section: 'Make-Up', category: 'Make-Up', service: 'Creative / Artistic Makeup', price: 850 },
+
+      { section: 'Make-Up', category: 'Bridal Make-Up', service: 'The Bride Make-Up (includes skin prep)', price: 900 },
+      { section: 'Make-Up', category: 'Bridal Make-Up', service: 'Mother of the Bride + The Bride', price: 1500 },
+      { section: 'Make-Up', category: 'Bridal Make-Up', service: 'The Bride + 3 Bridesmaids', price: 3000 },
+      { section: 'Make-Up', category: 'Bridal Make-Up', service: 'The Bride + 5 Bridesmaids', price: 4500 },
+      { section: 'Make-Up', category: 'Bridal Make-Up', service: 'The Bride Make-Up Trial', price: 550 },
+
+      /* ───────── Lashes & Brows ───────── */
+      { section: 'Lashes & Brows', category: 'Individual Lashes', service: 'Volume Lashes', price: 650 },
+      { section: 'Lashes & Brows', category: 'Individual Lashes', service: 'Volume Lash Refill (2–3 weeks)', price: 400 },
+      { section: 'Lashes & Brows', category: 'Individual Lashes', service: 'Wispy Lashes', price: 550 },
+      { section: 'Lashes & Brows', category: 'Individual Lashes', service: 'Wispy Lash Refill (2–3 weeks)', price: 350 },
+      { section: 'Lashes & Brows', category: 'Individual Lashes', service: 'Hybrid Lashes', price: 500 },
+      { section: 'Lashes & Brows', category: 'Individual Lashes', service: 'Hybrid Lash Refill (2–3 weeks)', price: 300 },
+      { section: 'Lashes & Brows', category: 'Individual Lashes', service: 'Classic Lashes', price: 400 },
+      { section: 'Lashes & Brows', category: 'Individual Lashes', service: 'Classic Lash Refill (2–3 weeks)', price: 200 },
+
+      { section: 'Lashes & Brows', category: 'Cluster Lashes', service: 'Volume Cluster Lashes', price: 450 },
+      { section: 'Lashes & Brows', category: 'Cluster Lashes', service: 'Volume Cluster Refill (2–3 weeks)', price: 250 },
+      { section: 'Lashes & Brows', category: 'Cluster Lashes', service: 'Hybrid Cluster Lashes', price: 400 },
+      { section: 'Lashes & Brows', category: 'Cluster Lashes', service: 'Hybrid Cluster Refill (2–3 weeks)', price: 200 },
+      { section: 'Lashes & Brows', category: 'Cluster Lashes', service: 'Classic Cluster Lashes', price: 300 },
+      { section: 'Lashes & Brows', category: 'Cluster Lashes', service: 'Classic Cluster Refill (2–3 weeks)', price: 150 },
+
+      { section: 'Lashes & Brows', category: 'Extras', service: 'Bottom Lash Extensions', price: 150, prefix: '+' },
+      { section: 'Lashes & Brows', category: 'Extras', service: 'Spikes Lash Extensions', price: 100, prefix: '+' },
+      { section: 'Lashes & Brows', category: 'Extras', service: 'Cat Eye Lash Extensions', price: 50, prefix: '+' },
+      { section: 'Lashes & Brows', category: 'Extras', service: 'Doll Eye Lash Extensions', price: 50, prefix: '+' },
+      { section: 'Lashes & Brows', category: 'Extras', service: 'Lash Removal', price: 100 },
+
+      { section: 'Lashes & Brows', category: 'Brows', service: 'Brow Shape', price: 100 },
+      { section: 'Lashes & Brows', category: 'Brows', service: 'Brow Tint', price: 100 },
+      { section: 'Lashes & Brows', category: 'Brows', service: 'Brow Lamination', price: 250 },
+
+      /* ───────── Hair Treatments ───────── */
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Hair Wash', price: 150 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Conditioning Hair Treatment', price: 200 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Mizani Hair Treatment', price: 300 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Silk Press', price: 400 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Dark & Lovely Hair Relaxer', price: 300 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Mizani Regular Hair Relaxer', price: 400 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Mizani Sensitive Hair Relaxer', price: 450 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'All Regular Hair Relaxers', price: 250 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Gel Ponytail/Pondo (excl. hairpiece)', price: 350 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Gel Ponytail/Pondo (incl. hairpiece)', price: 650 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Frontal Ponytail Installation (excl. hairpiece)', price: 500 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Frontal Ponytail + Bundle Install (incl. hairpiece)', price: 1200 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Half Up - Half Down Ponytail (excl. hairpiece)', price: 450 },
+      { section: 'Hair Treatments', category: 'Hair Treatments', service: 'Half Up - Half Down Ponytail (incl. hairpiece)', price: 750 },
+
+      /* ───────── Hair Plaiting ───────── */
+      { section: 'Hair Plaiting', category: 'Basic Plaits', service: 'Wash & Plaits', price: 300 },
+      { section: 'Hair Plaiting', category: 'Basic Plaits', service: 'Wash & Stylish Plaits', price: 350 },
+      { section: 'Hair Plaiting', category: 'Basic Plaits', service: 'Normal Straight Plaits', price: 200 },
+      { section: 'Hair Plaiting', category: 'Basic Plaits', service: 'Stylish Plaits', price: 250 },
+      { section: 'Hair Plaiting', category: 'Basic Plaits', service: 'Normal Straight Plaits (incl. hairpiece)', price: 250 },
+      { section: 'Hair Plaiting', category: 'Basic Plaits', service: 'Stylish Plaits (incl. hairpiece)', price: 300 },
+
+      { section: 'Hair Plaiting', category: 'Straight Back', service: 'Straight Back (Medium – Mid Back length)', price: 400 },
+      { section: 'Hair Plaiting', category: 'Straight Back', service: 'Straight Back (Medium – Bum length)', price: 500 },
+      { section: 'Hair Plaiting', category: 'Straight Back', service: 'Straight Back (Small – Mid Back length)', price: 450 },
+      { section: 'Hair Plaiting', category: 'Straight Back', service: 'Straight Back (Small – Bum length)', price: 550 },
+      { section: 'Hair Plaiting', category: 'Straight Back', service: 'Straight Back (Jumbo – Mid Back)', price: 350 },
+      { section: 'Hair Plaiting', category: 'Straight Back', service: 'Straight Back (Jumbo – Waist length)', price: 450 },
+
+      { section: 'Hair Plaiting', category: 'Cornrows', service: 'Stylish Cornrows (Mid Back length)', price: 550 },
+      { section: 'Hair Plaiting', category: 'Cornrows', service: 'Stylish Cornrows (Waist length)', price: 650 },
+
+      { section: 'Hair Plaiting', category: 'Upstyle', service: 'Upstyle (Medium – Mid Back length)', price: 700 },
+      { section: 'Hair Plaiting', category: 'Upstyle', service: 'Upstyle (Medium – Waist length)', price: 800 },
+
+      /* ───────── Hair Extras ───────── */
+      { section: 'Hair Extras', category: 'Hair Extras', service: 'Natural Hair Blow & Iron', price: 200 },
+      { section: 'Hair Extras', category: 'Hair Extras', service: 'Natural Hair Styling', price: 150 },
+      { section: 'Hair Extras', category: 'Hair Extras', service: 'Natural Hair Colouring', price: 250 },
+      { section: 'Hair Extras', category: 'Hair Extras', service: 'Hair Undo (wig lines & plaits etc.)', price: 50 },
+      { section: 'Hair Extras', category: 'Hair Extras', service: 'Hair Undo (braids)', price: 100 },
+
+      /* ───────── Wig Installation & Extras ───────── */
+      { section: 'Wig Installation & Extras', category: 'Wig Installation', service: 'Wig Installation', price: 400 },
+      { section: 'Wig Installation & Extras', category: 'Wig Installation', service: 'Wig Installation (our own CB hair)', price: 350 },
+
+      { section: 'Wig Installation & Extras', category: 'Wig Making & Treatment', service: 'Wig Making', price: 500 },
+      { section: 'Wig Installation & Extras', category: 'Wig Making & Treatment', service: 'Wig Treatment', price: 250 },
+      { section: 'Wig Installation & Extras', category: 'Wig Making & Treatment', service: 'Wig Wash', price: 200 },
+
+      { section: 'Wig Installation & Extras', category: 'Wig Customisation & Colouring', service: 'Wig Customisation', price: 300 },
+      { section: 'Wig Installation & Extras', category: 'Wig Customisation & Colouring', service: 'Wig Colouring (8–16 inches)', price: 450 },
+      { section: 'Wig Installation & Extras', category: 'Wig Customisation & Colouring', service: 'Wig Colouring (18–30 inches)', price: 600 },
+      { section: 'Wig Installation & Extras', category: 'Wig Customisation & Colouring', service: 'Wig Closure Replacement', price: 300 },
+
+      { section: 'Wig Installation & Extras', category: 'Wig Styling & Extras', service: 'Wig Blow & Iron', price: 150 },
+      { section: 'Wig Installation & Extras', category: 'Wig Styling & Extras', service: 'Wig Blunt Cut', price: 100 },
+      { section: 'Wig Installation & Extras', category: 'Wig Styling & Extras', service: 'Wig Band Replacement', price: 150 },
+      { section: 'Wig Installation & Extras', category: 'Wig Styling & Extras', service: 'Wig Styling', price: 200 },
+    ];
+
+    /* De-duplicate by exact service name (keeps the first occurrence) — a
+       safety net in case the data above is ever edited and a name repeats. */
+    (function dedupePriceData() {
+      const seen = new Set();
+      for (let i = priceData.length - 1; i >= 0; i--) {
+        const key = priceData[i].service.trim().toLowerCase();
+        if (seen.has(key)) priceData.splice(i, 1);
+        else seen.add(key);
+      }
+    })();
+
+    /* ── Build grouped <select> options ── */
+    const serviceSelect = document.getElementById('service');
+    const sectionOrder = [...new Set(priceData.map(d => d.section))];
+
+    sectionOrder.forEach(section => {
+      const optgroup = document.createElement('optgroup');
+      optgroup.label = section;
+      priceData
+        .filter(d => d.section === section)
+        .forEach(d => {
+          const opt = document.createElement('option');
+          opt.textContent = `${d.service} – ${d.prefix || ''}R${d.price}`;
+          opt.dataset.price = d.price;
+          opt.dataset.name = d.service;
+          opt.dataset.category = d.category;
+          opt.dataset.section = d.section;
+          optgroup.appendChild(opt);
+        });
+      serviceSelect.appendChild(optgroup);
+    });
+
+    /* ── Elements ── */
+    const searchInput   = document.getElementById('searchInput');
+    const addServiceBtn = document.getElementById('addService');
+    const itemCount      = document.getElementById('itemCount');
+    const totalPriceEl   = document.getElementById('totalPrice');
+    const selectedListEl = document.getElementById('bk-selected-list');
+    const summaryEmptyMsg = document.getElementById('summaryEmptyMsg');
+    const summaryTotalRow = document.getElementById('summaryTotalRow');
+    const dateInput      = document.getElementById('date');
+    const timeSelect     = document.getElementById('time');
+    const nameInput      = document.getElementById('name');
+    const emailInput     = document.getElementById('email');
+    const phoneInput     = document.getElementById('phone');
+    const bookingForm     = document.getElementById('booking-form');
+    const submitBtn       = document.getElementById('bk-submit-btn');
+    const statusMsg       = document.getElementById('bk-status-msg');
+
+    let selectedItems = []; // { name, price, category, section }
+
+    /* ── Filter service dropdown options as user types ── */
+    searchInput.addEventListener('keyup', function () {
+      const filter = searchInput.value.toLowerCase();
+      Array.from(serviceSelect.options).forEach(option => {
+        if (option.value === '') { option.style.display = ''; return; }
+        const text = option.textContent.toLowerCase();
+        option.style.display = text.includes(filter) ? '' : 'none';
+      });
+      Array.from(serviceSelect.getElementsByTagName('optgroup')).forEach(group => {
+        const anyVisible = Array.from(group.children).some(o => o.style.display !== 'none');
+        group.style.display = anyVisible ? '' : 'none';
+      });
+    });
+
+    /* ── Render selected services summary ── */
+    function renderSummary() {
+      itemCount.textContent = selectedItems.length;
+      selectedListEl.innerHTML = '';
+
+      if (selectedItems.length === 0) {
+        summaryEmptyMsg.style.display = 'block';
+        summaryTotalRow.style.display = 'none';
+        return;
+      }
+      summaryEmptyMsg.style.display = 'none';
+      summaryTotalRow.style.display = 'flex';
+
+      let total = 0;
+      selectedItems.forEach((item, idx) => {
+        total += item.price;
+        const li = document.createElement('li');
+        li.className = 'bk-selected-item';
+        li.innerHTML = `
+          <span>${item.name}</span>
+          <span>
+            <span class="bk-item-price">R${item.price}</span>
+            <button type="button" class="bk-remove-btn" data-idx="${idx}" aria-label="Remove ${item.name}">✕</button>
+          </span>
+        `;
+        selectedListEl.appendChild(li);
+      });
+      totalPriceEl.textContent = total;
+
+      selectedListEl.querySelectorAll('.bk-remove-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          selectedItems.splice(Number(btn.dataset.idx), 1);
+          renderSummary();
+        });
+      });
+    }
+
+    /* ── Add selected service to list ── */
+    addServiceBtn.addEventListener('click', function () {
+      const selectedOption = serviceSelect.options[serviceSelect.selectedIndex];
+      if (selectedOption && selectedOption.value !== '' && selectedOption.dataset.name) {
+        selectedItems.push({
+          name: selectedOption.dataset.name,
+          price: parseInt(selectedOption.dataset.price, 10),
+          category: selectedOption.dataset.category,
+          section: selectedOption.dataset.section,
+        });
+        renderSummary();
+        clearFieldError('services');
+        serviceSelect.selectedIndex = 0;
+      }
+    });
+
+    /* ── Restrict date to tomorrow onwards ── */
+    const today = new Date();
+    today.setDate(today.getDate() + 1); // tomorrow
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    dateInput.min = `${yyyy}-${mm}-${dd}`;
+
+    /* ── Generate time slots based on day of week ── */
+    function generateTimeSlots(date) {
+      timeSelect.innerHTML = '';
+      if (!date) return;
+      const day = new Date(date + 'T00:00:00').getDay(); // 0=Sun, 1=Mon...
+      const startHour = 9;
+      const endHour = (day === 0) ? 14 : 18; // Sunday 9–14, else 9–18
+
+      for (let h = startHour; h <= endHour; h++) {
+        for (const m of [0, 15, 30, 45]) {
+          if (h === endHour && m > 0) break; // don't exceed closing
+          const hh = String(h).padStart(2, '0');
+          const mn = String(m).padStart(2, '0');
+          const option = document.createElement('option');
+          option.value = `${hh}:${mn}`;
+          option.textContent = `${hh}:${mn}`;
+          timeSelect.appendChild(option);
+        }
+      }
+    }
+    dateInput.addEventListener('change', function () {
+      generateTimeSlots(dateInput.value);
+      clearFieldError('date');
+    });
+
+    /* ── Field validation helpers ── */
+    function setFieldError(key, show) {
+      const fieldMap = {
+        services: [null, 'bk-error-services'],
+        date: [dateInput, 'bk-error-date'],
+        time: [timeSelect, 'bk-error-time'],
+        name: [nameInput, 'bk-error-name'],
+        email: [emailInput, 'bk-error-email'],
+        phone: [phoneInput, 'bk-error-phone'],
+      };
+      const [el, errorId] = fieldMap[key];
+      if (el) el.classList.toggle('bk-invalid', show);
+      document.getElementById(errorId).classList.toggle('show', show);
+    }
+    function clearFieldError(key) { setFieldError(key, false); }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    [['name', nameInput, () => nameInput.value.trim().length > 0],
+     ['email', emailInput, () => emailPattern.test(emailInput.value.trim())],
+     ['phone', phoneInput, () => phoneInput.value.trim().length >= 7]]
+      .forEach(([key, input, check]) => {
+        input.addEventListener('input', () => {
+          if (input.classList.contains('bk-invalid') && check()) clearFieldError(key);
+        });
+      });
+
+    function validateForm() {
+      let valid = true;
+
+      if (selectedItems.length === 0) { setFieldError('services', true); valid = false; }
+      else clearFieldError('services');
+
+      if (!dateInput.value) { setFieldError('date', true); valid = false; }
+      else clearFieldError('date');
+
+      if (!timeSelect.value) { setFieldError('time', true); valid = false; }
+      else clearFieldError('time');
+
+      if (!nameInput.value.trim()) { setFieldError('name', true); valid = false; }
+      else clearFieldError('name');
+
+      if (!emailPattern.test(emailInput.value.trim())) { setFieldError('email', true); valid = false; }
+      else clearFieldError('email');
+
+      if (phoneInput.value.trim().length < 7) { setFieldError('phone', true); valid = false; }
+      else clearFieldError('phone');
+
+      return valid;
+    }
+
+    /* ── Status message helper ── */
+    function showStatus(type, text) {
+      statusMsg.className = `bk-status-msg show ${type}`;
+      statusMsg.textContent = text;
+      statusMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    /* ── Submit: validate, then send via Formspree ── */
+    bookingForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      statusMsg.classList.remove('show');
+
+      if (!validateForm()) {
+        const firstInvalid = bookingForm.querySelector('.bk-invalid');
+        if (firstInvalid) firstInvalid.focus();
+        else document.getElementById('bk-error-services').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const total = selectedItems.reduce((sum, i) => sum + i.price, 0);
+      const servicesText = selectedItems
+        .map(i => `${i.name} (${i.section} — ${i.category}) — R${i.price}`)
+        .join('\n');
+
+      const formData = {
+        _subject: `New booking — ${nameInput.value.trim()} (${dateInput.value} ${timeSelect.value})`,
+        client_name: nameInput.value.trim(),
+        client_email: emailInput.value.trim(),
+        client_phone: phoneInput.value.trim(),
+        booking_date: dateInput.value,
+        booking_time: timeSelect.value,
+        services_count: selectedItems.length,
+        total_price: `R${total}`,
+        services_list: servicesText,
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+        .then((response) => {
+          if (response.ok) {
+            showStatus('success', '✓ Booking sent! We\'ll confirm your appointment shortly.');
+            bookingForm.reset();
+            selectedItems = [];
+            renderSummary();
+            timeSelect.innerHTML = '';
+            [nameInput, emailInput, phoneInput, dateInput, timeSelect].forEach(el => el.classList.remove('bk-invalid'));
+          } else {
+            return response.json().then((data) => {
+              const msg = (data && data.errors && data.errors.map(er => er.message).join(', ')) || 'Please try again.';
+              console.error('Formspree rejected the submission:', data);
+              showStatus('error', `Couldn't send your booking — ${msg}`);
+            });
+          }
+        })
+        .catch((err) => {
+          console.error('Formspree request failed:', err);
+          showStatus('error', 'Something went wrong sending your booking. Please check your connection and try again, or contact us directly.');
+        })
+        .finally(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Confirm Booking';
+        });
+    });
+
+    /* ── Init ── */
+    renderSummary();
+
+    /* ── Hamburger / Mobile Nav ── */
+    const bkHamburger = document.getElementById('bk-hamburger');
+    const bkMobileNav  = document.getElementById('bk-mobile-nav');
+
+    bkHamburger.addEventListener('click', () => {
+      const isOpen = bkHamburger.classList.toggle('open');
+      bkMobileNav.classList.toggle('open', isOpen);
+      bkHamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    bkMobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        bkHamburger.classList.remove('open');
+        bkMobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+    document.addEventListener('click', e => {
+      if (bkMobileNav.classList.contains('open') &&
+          !bkMobileNav.contains(e.target) &&
+          !bkHamburger.contains(e.target)) {
+        bkHamburger.classList.remove('open');
+        bkMobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    /* ── Scroll-to-top ── */
+    const bkScrollBtn = document.getElementById('bk-scroll-top');
+    window.addEventListener('scroll', () => {
+      bkScrollBtn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    bkScrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+</body>
+</html>

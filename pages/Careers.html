@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cordon Beauty Bar | Careers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    body.careers-page {
+      --cb-rose:      #C9847A;
+      --cb-blush:     #F2E6E0;
+      --cb-champagne: #F7F0E8;
+      --cb-bark:      #2C1F1A;
+      --cb-mink:      #7A5C54;
+      --cb-white:     #FDFAF7;
+      --cb-ff-display: 'Cormorant Garamond', Georgia, serif;
+      --cb-ff-body:    'DM Sans', system-ui, sans-serif;
+      --cb-radius:    14px;
+      --cb-tr: 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    body.careers-page {
+      font-family: var(--cb-ff-body);
+      color: var(--cb-bark);
+      background: var(--cb-white);
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    a { text-decoration: none; color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--cb-rose); outline-offset: 2px; }
+
+    /* ── Header & Navigation ── */
+    body.careers-page header#main-header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--cb-white);
+      box-shadow: 0 1px 0 rgba(44,31,26,0.08);
+    }
+    body.careers-page header#main-header .header-container {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 24px; height: 70px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    body.careers-page .logo-left { height: 140px; width: auto; display: block; }
+
+    body.careers-page nav#navbar {
+      display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+    }
+    body.careers-page .nav-link {
+      font-family: var(--cb-ff-body);
+      font-size: 0.85rem; font-weight: 500;
+      color: var(--cb-mink); padding: 6px 10px; border-radius: 6px;
+      transition: color var(--cb-tr), background var(--cb-tr); white-space: nowrap;
+    }
+    body.careers-page .nav-link:hover,
+    body.careers-page .nav-link.active { color: var(--cb-rose); background: var(--cb-blush); }
+    body.careers-page .nav-link.button {
+      background: var(--cb-rose); color: #fff;
+      padding: 7px 14px; border-radius: 30px;
+    }
+    body.careers-page .nav-link.button:hover { background: var(--cb-mink); color: #fff; }
+
+    /* ── Hamburger ── */
+    body.careers-page .cb-hamburger {
+      display: none; flex-direction: column; justify-content: space-between;
+      width: 26px; height: 18px; cursor: pointer;
+      background: none; border: none; padding: 0; z-index: 200;
+    }
+    body.careers-page .cb-hamburger span {
+      display: block; height: 2px; background: var(--cb-bark);
+      border-radius: 2px; transition: transform var(--cb-tr), opacity var(--cb-tr);
+    }
+    body.careers-page .cb-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    body.careers-page .cb-hamburger.open span:nth-child(2) { opacity: 0; }
+    body.careers-page .cb-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* ── Mobile Nav Overlay ── */
+    body.careers-page .cb-mobile-nav {
+      display: none; position: fixed; inset: 0;
+      background: var(--cb-white); z-index: 150;
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 24px; padding: 40px 24px;
+    }
+    body.careers-page .cb-mobile-nav.open { display: flex; }
+    body.careers-page .cb-mobile-nav .cb-mobile-link {
+      font-size: 1.4rem; font-family: var(--cb-ff-display);
+      font-weight: 400; color: var(--cb-bark); padding: 10px 0; letter-spacing: 0.03em;
+    }
+    body.careers-page .cb-mobile-nav .cb-mobile-link.active { color: var(--cb-rose); }
+    body.careers-page .cb-mobile-nav .cb-mobile-button {
+      font-family: var(--cb-ff-body); font-size: 1rem;
+      padding: 12px 32px; border-radius: 30px;
+      background: var(--cb-rose); color: #fff;
+    }
+
+    /* ── Hero ── */
+    body.careers-page .cb-hero {
+      background: linear-gradient(135deg, var(--cb-bark) 0%, #4a2e27 100%);
+      padding: 80px 24px 64px;
+      text-align: center; color: #fff;
+      position: relative; overflow: hidden;
+    }
+    body.careers-page .cb-hero::before {
+      content: '💼';
+      position: absolute; font-size: 180px;
+      opacity: 0.05; top: -20px; right: -20px;
+      line-height: 1; pointer-events: none;
+    }
+    body.careers-page .cb-hero-eyebrow {
+      font-family: var(--cb-ff-body);
+      font-size: 0.72rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--cb-rose);
+      font-weight: 500; margin-bottom: 10px;
+    }
+    body.careers-page #career-heading {
+      font-family: var(--cb-ff-display);
+      font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+      font-weight: 300; letter-spacing: 0.02em;
+      line-height: 1.2; margin-bottom: 14px;
+      max-width: 600px; margin-left: auto; margin-right: auto;
+    }
+    body.careers-page .cb-hero-sub {
+      font-family: var(--cb-ff-body);
+      color: rgba(255,255,255,0.65);
+      font-size: 0.95rem; max-width: 460px;
+      margin: 0 auto;
+    }
+
+    /* ── Main card ── */
+    body.careers-page .cb-main-wrap {
+      max-width: 700px; margin: 0 auto;
+      padding: 56px 24px 88px;
+    }
+    body.careers-page .cb-card {
+      background: linear-gradient(135deg, var(--cb-blush) 0%, var(--cb-champagne) 100%);
+      border-radius: var(--cb-radius);
+      padding: 40px 32px;
+      text-align: center;
+    }
+    body.careers-page .cb-card p.eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--cb-rose);
+      font-weight: 500; margin-bottom: 8px;
+    }
+    body.careers-page .cb-card h3 {
+      font-family: var(--cb-ff-display);
+      font-size: 1.6rem; font-weight: 300;
+      color: var(--cb-bark); margin-bottom: 10px;
+    }
+    body.careers-page .cb-card p.sub {
+      color: var(--cb-mink); font-size: 0.9rem; margin-bottom: 24px;
+    }
+    body.careers-page .cb-btn {
+      display: inline-block;
+      padding: 13px 36px; background: var(--cb-rose);
+      color: #fff; border-radius: 30px;
+      font-size: 0.875rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: background var(--cb-tr), transform var(--cb-tr);
+    }
+    body.careers-page .cb-btn:hover { background: var(--cb-mink); transform: translateY(-2px); }
+
+    /* ── Footer ── */
+    body.careers-page footer#footer {
+      background: #1a100d;
+      color: rgba(255,255,255,0.6);
+      padding: 36px 24px; text-align: center; font-size: 0.82rem;
+    }
+    body.careers-page footer .footer-brand {
+      font-family: var(--cb-ff-display); font-size: 1.05rem;
+      color: rgba(255,255,255,0.85); margin-bottom: 6px;
+    }
+    body.careers-page footer .footer-credit { margin-bottom: 14px; }
+    body.careers-page footer .footer-highlight { color: var(--cb-rose); }
+    body.careers-page .footer-social { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+    body.careers-page .footer-link { color: rgba(255,255,255,0.5); transition: color var(--cb-tr); }
+    body.careers-page .footer-link:hover { color: var(--cb-rose); }
+
+    /* ── Scroll-to-top ── */
+    body.careers-page #cb-scroll-top {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 46px; height: 46px;
+      background: var(--cb-rose); color: #fff;
+      border: none; border-radius: 50%; font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(201,132,122,0.4);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity var(--cb-tr), transform var(--cb-tr); z-index: 90;
+    }
+    body.careers-page #cb-scroll-top.visible { opacity: 1; pointer-events: auto; }
+    body.careers-page #cb-scroll-top:hover { transform: scale(1.1); }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      body.careers-page header#main-header .header-container { padding: 0 18px; }
+      body.careers-page nav#navbar { gap: 2px; }
+      body.careers-page .nav-link { font-size: 0.8rem; padding: 6px 8px; }
+      body.careers-page .cb-main-wrap { padding: 48px 20px 72px; }
+    }
+    @media (max-width: 768px) {
+      body.careers-page nav#navbar { display: none; }
+      body.careers-page .cb-hamburger { display: flex; }
+      body.careers-page .cb-hero { padding: 64px 20px 48px; }
+      body.careers-page .cb-card { padding: 28px 20px; }
+    }
+    @media (max-width: 480px) {
+      body.careers-page .logo-left { height: 34px; }
+      body.careers-page header#main-header .header-container { height: 60px; padding: 0 16px; }
+      body.careers-page .cb-hero { padding: 52px 16px 40px; }
+      body.careers-page .cb-hero-sub { font-size: 0.85rem; }
+      body.careers-page .cb-card h3 { font-size: 1.4rem; }
+      body.careers-page .cb-mobile-nav .cb-mobile-link { font-size: 1.2rem; }
+      body.careers-page #cb-scroll-top { width: 40px; height: 40px; bottom: 20px; right: 20px; font-size: 1.05rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      body.careers-page *, body.careers-page *::before, body.careers-page *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body id="page-body" class="careers-page">
+
+  <!-- ── Header ── -->
+   <br>
+  <header id="main-header">
+    <div class="header-container">
+      <img src="../cordon images/cordon logo 23.png" alt="Cordon Beauty Bar Logo" class="logo-left">
+      <br>
+      <br>
+      <nav id="navbar" aria-label="Main navigation">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="./About.html" class="nav-link">About</a>
+        <a href="./Services.html" class="nav-link">Services</a>
+        <a href="./Pricelist.html" class="nav-link">Price List</a>
+        <a href="./Testimonials.html" class="nav-link">Testimonials</a>
+        <a href="./Contact.html" class="nav-link">Contact</a>
+        <a href="./Careers.html" class="nav-link button active">Careers</a>
+        <a href="./Book-online.html" class="nav-link button">Book Online</a>
+      </nav>
+      <button class="cb-hamburger" id="cb-hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="cb-mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <br>
+  
+  </header>
+
+  <!-- ── Mobile Nav Overlay ── -->
+  <nav class="cb-mobile-nav" id="cb-mobile-nav" aria-label="Mobile navigation">
+    <a href="../index.html" class="cb-mobile-link">Home</a>
+    <a href="./About.html" class="cb-mobile-link">About</a>
+    <a href="./Services.html" class="cb-mobile-link">Services</a>
+    <a href="./Pricelist.html" class="cb-mobile-link">Price List</a>
+    <a href="./Testimonials.html" class="cb-mobile-link">Testimonials</a>
+    <a href="./Contact.html" class="cb-mobile-link">Contact</a>
+    <a href="./Careers.html" class="cb-mobile-link active">Careers</a>
+    <a href="./Book-online.html" class="cb-mobile-link cb-mobile-button">Book Online</a>
+  </nav>
+<br>
+<br>
+  <!-- ── Hero ── -->
+  <div class="cb-hero">
+    <p class="cb-hero-eyebrow">Careers</p>
+    <h1 id="career-heading">No Job Openings at the Moment</h1>
+    <p class="cb-hero-sub">We're not currently hiring, but we'd still love to hear from talented people who share our passion for beauty and care.</p>
+  </div>
+
+  <!-- ── Stay in touch ── -->
+  <main class="cb-main-wrap">
+    <div class="cb-card">
+      <p class="eyebrow">Stay in the loop</p>
+      <h3>Check Back Soon</h3>
+      <p class="sub">New opportunities are posted here as they open up. In the meantime, feel free to reach out and introduce yourself.</p>
+      <a href="./Contact.html" class="cb-btn">Get in Touch</a>
+    </div>
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer id="footer">
+    <div class="footer-container">
+      <p class="footer-brand">© 2026 Cordon Beauty Bar · All Rights Reserved</p>
+      <p class="footer-credit">
+        Developed &amp; Maintained by
+        <span class="footer-highlight">Zukhanye Ntlama</span>
+      </p>
+      <div class="footer-social">
+        <a href="mailto:info@cordonbeauty.co.za" class="footer-link">📧 Email</a>
+        <a href="tel:+27213566776" class="footer-link">📞 Call</a>
+        <a href="https://www.linkedin.com/in/zukhanye-ntlama" target="_blank" rel="noopener" class="footer-link">🌐 LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Scroll-to-top ── -->
+  <button id="cb-scroll-top" aria-label="Scroll to top">↑</button>
+
+  <script>
+    /* ── Hamburger / Mobile Nav ── */
+    const cbHamburger = document.getElementById('cb-hamburger');
+    const cbMobileNav  = document.getElementById('cb-mobile-nav');
+
+    cbHamburger.addEventListener('click', () => {
+      const isOpen = cbHamburger.classList.toggle('open');
+      cbMobileNav.classList.toggle('open', isOpen);
+      cbHamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    cbMobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        cbHamburger.classList.remove('open');
+        cbMobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+    document.addEventListener('click', e => {
+      if (cbMobileNav.classList.contains('open') &&
+          !cbMobileNav.contains(e.target) &&
+          !cbHamburger.contains(e.target)) {
+        cbHamburger.classList.remove('open');
+        cbMobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    /* ── Scroll-to-top ── */
+    const cbScrollBtn = document.getElementById('cb-scroll-top');
+    window.addEventListener('scroll', () => {
+      cbScrollBtn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    cbScrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+</body>
+</html>

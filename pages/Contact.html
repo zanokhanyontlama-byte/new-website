@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cordon Beauty Bar | Contact Us</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    body.contact-page {
+      --cp-rose:      #C9847A;
+      --cp-blush:     #F2E6E0;
+      --cp-champagne: #F7F0E8;
+      --cp-bark:      #2C1F1A;
+      --cp-mink:      #7A5C54;
+      --cp-white:     #FDFAF7;
+      --cp-ff-display: 'Cormorant Garamond', Georgia, serif;
+      --cp-ff-body:    'DM Sans', system-ui, sans-serif;
+      --cp-radius:    14px;
+      --cp-tr: 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    body.contact-page {
+      font-family: var(--cp-ff-body);
+      color: var(--cp-bark);
+      background: var(--cp-white);
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    a { text-decoration: none; color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--cp-rose); outline-offset: 2px; }
+
+    /* ── Header & Navigation ── */
+    body.contact-page header#main-header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--cp-white);
+      box-shadow: 0 1px 0 rgba(44,31,26,0.08);
+    }
+    body.contact-page header#main-header .header-container {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 24px; height: 70px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    body.contact-page .logo-left { height: 140px; width: auto; display: block; }
+
+    body.contact-page nav#navbar {
+      display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+    }
+    body.contact-page .nav-link {
+      font-family: var(--cp-ff-body);
+      font-size: 0.85rem; font-weight: 500;
+      color: var(--cp-mink); padding: 6px 10px; border-radius: 6px;
+      transition: color var(--cp-tr), background var(--cp-tr); white-space: nowrap;
+    }
+    body.contact-page .nav-link:hover,
+    body.contact-page .nav-link.active { color: var(--cp-rose); background: var(--cp-blush); }
+    body.contact-page .nav-link.button {
+      background: var(--cp-rose); color: #fff;
+      padding: 7px 14px; border-radius: 30px;
+    }
+    body.contact-page .nav-link.button:hover { background: var(--cp-mink); color: #fff; }
+
+    /* ── Hamburger ── */
+    body.contact-page .cp-hamburger {
+      display: none; flex-direction: column; justify-content: space-between;
+      width: 26px; height: 18px; cursor: pointer;
+      background: none; border: none; padding: 0; z-index: 200;
+    }
+    body.contact-page .cp-hamburger span {
+      display: block; height: 2px; background: var(--cp-bark);
+      border-radius: 2px; transition: transform var(--cp-tr), opacity var(--cp-tr);
+    }
+    body.contact-page .cp-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    body.contact-page .cp-hamburger.open span:nth-child(2) { opacity: 0; }
+    body.contact-page .cp-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* ── Mobile Nav Overlay ── */
+    body.contact-page .cp-mobile-nav {
+      display: none; position: fixed; inset: 0;
+      background: var(--cp-white); z-index: 150;
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 24px; padding: 40px 24px;
+    }
+    body.contact-page .cp-mobile-nav.open { display: flex; }
+    body.contact-page .cp-mobile-nav .cp-mobile-link {
+      font-size: 1.4rem; font-family: var(--cp-ff-display);
+      font-weight: 400; color: var(--cp-bark); padding: 10px 0; letter-spacing: 0.03em;
+    }
+    body.contact-page .cp-mobile-nav .cp-mobile-link.active { color: var(--cp-rose); }
+    body.contact-page .cp-mobile-nav .cp-mobile-button {
+      font-family: var(--cp-ff-body); font-size: 1rem;
+      padding: 12px 32px; border-radius: 30px;
+      background: var(--cp-rose); color: #fff;
+    }
+
+    /* ── Hero ── */
+    body.contact-page #hero { position: relative; }
+    body.contact-page .hero-background {
+      background: linear-gradient(135deg, var(--cp-bark) 0%, #4A2E27 100%);
+      position: relative; min-height: 360px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    body.contact-page .hero-overlay {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      padding: 60px 24px;
+    }
+    body.contact-page .hero-content { text-align: center; max-width: 560px; color: #fff; }
+    body.contact-page .hero-title {
+      font-family: var(--cp-ff-display);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 300; letter-spacing: 0.02em;
+      line-height: 1.1; margin-bottom: 14px;
+    }
+    body.contact-page .hero-text {
+      font-size: 0.98rem; line-height: 1.6;
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* ── Section base ── */
+    body.contact-page section {
+      max-width: 900px; margin: 0 auto;
+      padding: 56px 24px;
+    }
+    body.contact-page #social-section {
+      background: var(--cp-champagne);
+      max-width: 100%;
+    }
+    body.contact-page #social-section > * {
+      max-width: 900px; margin-left: auto; margin-right: auto;
+    }
+    body.contact-page .section-title {
+      font-family: var(--cp-ff-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 300; color: var(--cp-bark);
+      text-align: center; margin-bottom: 32px;
+      position: relative;
+    }
+    body.contact-page .section-title::after {
+      content: ''; display: block;
+      width: 48px; height: 2px;
+      background: var(--cp-rose);
+      margin: 14px auto 0;
+    }
+
+    /* ── Contact Info ── */
+    body.contact-page .info-container {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px 32px;
+      background: #fff;
+      border: 1px solid rgba(201,132,122,0.18);
+      border-radius: var(--cp-radius);
+      box-shadow: 0 4px 28px rgba(44,31,26,0.06);
+      padding: 28px 32px;
+    }
+    body.contact-page .info-container p {
+      font-size: 0.92rem; line-height: 1.6; color: var(--cp-mink);
+    }
+    body.contact-page .info-container p strong { color: var(--cp-bark); }
+    body.contact-page .info-container .info-link {
+      color: var(--cp-rose); transition: color var(--cp-tr);
+    }
+    body.contact-page .info-container .info-link:hover { color: var(--cp-mink); }
+
+    /* ── Map ── */
+    body.contact-page .map-container {
+      border-radius: var(--cp-radius); overflow: hidden;
+      border: 1px solid rgba(201,132,122,0.18);
+      box-shadow: 0 4px 28px rgba(44,31,26,0.08);
+      line-height: 0;
+    }
+    body.contact-page .map-container iframe { display: block; width: 100%; }
+
+    /* ── Social ── */
+    body.contact-page .social-links {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+    }
+    body.contact-page .social-link {
+      font-family: var(--cp-ff-body); font-size: 0.85rem; font-weight: 500;
+      padding: 11px 22px; border-radius: 30px;
+      background: #fff; color: var(--cp-bark);
+      border: 1.5px solid var(--cp-blush);
+      transition: background var(--cp-tr), color var(--cp-tr), border-color var(--cp-tr), transform var(--cp-tr);
+      white-space: nowrap;
+    }
+    body.contact-page .social-link:hover {
+      background: var(--cp-rose); color: #fff; border-color: var(--cp-rose);
+      transform: translateY(-2px);
+    }
+
+    /* ── FAQ ── */
+    body.contact-page .faq-list { list-style: none; padding: 0; }
+    body.contact-page .faq-list li {
+      background: #fff;
+      border: 1px solid rgba(201,132,122,0.18);
+      border-radius: var(--cp-radius);
+      padding: 18px 22px;
+      margin-bottom: 14px;
+      font-size: 0.9rem; line-height: 1.6; color: var(--cp-mink);
+      box-shadow: 0 2px 14px rgba(44,31,26,0.05);
+    }
+    body.contact-page .faq-list li strong {
+      display: block; color: var(--cp-bark);
+      font-family: var(--cp-ff-display);
+      font-size: 1.08rem; font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    /* ── Footer ── */
+    body.contact-page footer#footer {
+      background: #1a100d;
+      color: rgba(255,255,255,0.6);
+      padding: 36px 24px; text-align: center; font-size: 0.82rem;
+    }
+    body.contact-page footer .footer-brand {
+      font-family: var(--cp-ff-display); font-size: 1.05rem;
+      color: rgba(255,255,255,0.85); margin-bottom: 6px;
+    }
+    body.contact-page footer .footer-credit { margin-bottom: 14px; }
+    body.contact-page footer .footer-highlight { color: var(--cp-rose); }
+    body.contact-page .footer-social { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+    body.contact-page footer .footer-link { color: rgba(255,255,255,0.5); transition: color var(--cp-tr); }
+    body.contact-page footer .footer-link:hover { color: var(--cp-rose); }
+
+    /* ── Scroll-to-top ── */
+    body.contact-page #cp-scroll-top {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 46px; height: 46px;
+      background: var(--cp-rose); color: #fff;
+      border: none; border-radius: 50%; font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(201,132,122,0.4);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity var(--cp-tr), transform var(--cp-tr); z-index: 90;
+    }
+    body.contact-page #cp-scroll-top.visible { opacity: 1; pointer-events: auto; }
+    body.contact-page #cp-scroll-top:hover { transform: scale(1.1); }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      body.contact-page header#main-header .header-container { padding: 0 18px; }
+      body.contact-page nav#navbar { gap: 2px; }
+      body.contact-page .nav-link { font-size: 0.8rem; padding: 6px 8px; }
+      body.contact-page section { padding: 48px 20px; }
+      body.contact-page .info-container { padding: 24px; }
+    }
+    @media (max-width: 768px) {
+      body.contact-page nav#navbar { display: none; }
+      body.contact-page .cp-hamburger { display: flex; }
+      body.contact-page .hero-background { min-height: 280px; }
+      body.contact-page .hero-overlay { padding: 40px 20px; }
+      body.contact-page section { padding: 40px 18px; }
+      body.contact-page .info-container { grid-template-columns: 1fr; gap: 14px; padding: 22px 20px; }
+      body.contact-page .map-container iframe { height: 300px; }
+      body.contact-page .social-links { gap: 10px; }
+      body.contact-page .social-link { padding: 10px 18px; font-size: 0.82rem; }
+    }
+    @media (max-width: 480px) {
+      body.contact-page .logo-left { height: 34px; }
+      body.contact-page header#main-header .header-container { height: 60px; padding: 0 16px; }
+      body.contact-page .hero-background { min-height: 240px; }
+      body.contact-page .hero-text { font-size: 0.88rem; }
+      body.contact-page section { padding: 32px 16px; }
+      body.contact-page .section-title { margin-bottom: 24px; }
+      body.contact-page .info-container p { font-size: 0.86rem; }
+      body.contact-page .faq-list li { padding: 14px 16px; }
+      body.contact-page .social-links { flex-direction: column; align-items: stretch; }
+      body.contact-page .social-link { text-align: center; }
+      body.contact-page .cp-mobile-nav .cp-mobile-link { font-size: 1.2rem; }
+      body.contact-page #cp-scroll-top { width: 40px; height: 40px; bottom: 20px; right: 20px; font-size: 1.05rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      body.contact-page *, body.contact-page *::before, body.contact-page *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body id="page-body" class="contact-page">
+
+  <!-- ── Header ── -->
+   <br>
+  <header id="main-header">
+    <div class="header-container">
+      <img src="../cordon images/cordon logo 23.png" alt="Cordon Beauty Bar Logo" class="logo-left">
+      <nav id="navbar" aria-label="Main navigation">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="./About.html" class="nav-link">About</a>
+        <a href="./Services.html" class="nav-link">Services</a>
+        <a href="./Pricelist.html" class="nav-link">Price List</a>
+        <a href="./Testimonials.html" class="nav-link">Testimonials</a>
+        <a href="./Contact.html" class="nav-link active">Contact</a>
+        <a href="./Careers.html" class="nav-link button">Careers</a>
+        <a href="./Book-online.html" class="nav-link button">Book Online</a>
+      </nav>
+      <button class="cp-hamburger" id="cp-hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="cp-mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <br>
+  </header>
+
+  <!-- ── Mobile Nav Overlay ── -->
+  <nav class="cp-mobile-nav" id="cp-mobile-nav" aria-label="Mobile navigation">
+    <a href="../index.html" class="cp-mobile-link">Home</a>
+    <a href="./About.html" class="cp-mobile-link">About</a>
+    <a href="./Services.html" class="cp-mobile-link">Services</a>
+    <a href="./Pricelist.html" class="cp-mobile-link">Price List</a>
+    <a href="./Testimonials.html" class="cp-mobile-link">Testimonials</a>
+    <a href="./Contact.html" class="cp-mobile-link active">Contact</a>
+    <a href="./Careers.html" class="cp-mobile-link">Careers</a>
+    <a href="./Book-online.html" class="cp-mobile-link cp-mobile-button">Book Online</a>
+  </nav>
+  <br>
+  <!-- Contact Hero -->
+  <section id="hero">
+    <div class="hero-background">
+      <div class="hero-overlay">
+        <div class="hero-content">
+          <h2 class="hero-title">Get in Touch</h2>
+          <p class="hero-text">We'd love to hear from you! Whether you have questions, feedback, or want to book an appointment, reach out today.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Information Section -->
+  <section id="contact-info">
+    <h2 class="section-title">Contact Information</h2>
+    <div class="info-container">
+      <p><strong>📍 Address:</strong> 10 Butterfield Cres, Fairview, Cape Town</p>
+      <p><strong>📧 Email:</strong> <a href="mailto:info@cordonbeauty.co.za" class="info-link">info@cordonbeauty.co.za</a></p>
+      <p><strong>📞 Phone:</strong> <a href="tel:+27213566776" class="info-link">+27 21 356 6776</a></p>
+      <p><strong>🕒 Operating Hours:</strong> Monday – Saturday: 9am – 6pm | Sunday: Closed</p>
+    </div>
+  </section>
+
+  <!-- Google Map Section -->
+  <section id="map-section">
+    <h2 class="section-title">Find Us</h2>
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.123456789!2d18.423300!3d-33.918861!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc5d123456789%3A0xabcdef123456789!2s10%20Butterfield%20Cres%2C%20Fairview%2C%20Cape%20Town!5e0!3m2!1sen!2sza!4v1716123456789"
+        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Social Media Section -->
+  <section id="social-section">
+    <h2 class="section-title">Connect With Us</h2>
+    <div class="social-links">
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="social-link">📸 Instagram</a>
+      <a href="https://wa.me/27213566776" target="_blank" rel="noopener" class="social-link">💬 WhatsApp</a>
+      <a href="https://www.tiktok.com/" target="_blank" rel="noopener" class="social-link">🎵 TikTok</a>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="social-link">📘 Facebook</a>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq-section">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <ul class="faq-list">
+      <li><strong>Do I need to book in advance?</strong> Yes, we recommend booking online to secure your preferred time slot.</li>
+      <li><strong>What payment methods do you accept?</strong> We accept Visa, MasterCard, and major debit cards.</li>
+      <li><strong>Do you offer group bookings?</strong> Absolutely! Contact us directly for group packages and special offers.</li>
+    </ul>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="footer-container">
+      <p class="footer-brand">© 2026 Cordon Beauty Bar · All Rights Reserved</p>
+      <p class="footer-credit">
+        Developed &amp; Maintained by
+        <span class="footer-highlight">Zukhanye Ntlama</span>
+      </p>
+      <div class="footer-social">
+        <a href="mailto:info@cordonbeauty.co.za" class="footer-link">📧 Email</a>
+        <a href="tel:+27213566776" class="footer-link">📞 Call</a>
+        <a href="https://www.linkedin.com/in/zukhanye-ntlama" target="_blank" rel="noopener" class="footer-link">🌐 LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll-to-top -->
+  <button id="cp-scroll-top" aria-label="Scroll to top">↑</button>
+
+  <script>
+    /* ── Hamburger / Mobile Nav ── */
+    const cpHamburger = document.getElementById('cp-hamburger');
+    const cpMobileNav  = document.getElementById('cp-mobile-nav');
+
+    cpHamburger.addEventListener('click', () => {
+      const isOpen = cpHamburger.classList.toggle('open');
+      cpMobileNav.classList.toggle('open', isOpen);
+      cpHamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    cpMobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        cpHamburger.classList.remove('open');
+        cpMobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+    document.addEventListener('click', e => {
+      if (cpMobileNav.classList.contains('open') &&
+          !cpMobileNav.contains(e.target) &&
+          !cpHamburger.contains(e.target)) {
+        cpHamburger.classList.remove('open');
+        cpMobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    /* ── Scroll-to-top ── */
+    const cpScrollBtn = document.getElementById('cp-scroll-top');
+    window.addEventListener('scroll', () => {
+      cpScrollBtn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    cpScrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+</body>
+</html>

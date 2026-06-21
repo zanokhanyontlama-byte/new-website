@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cordon Beauty Bar | Home</title>
+  <link rel="icon" href="cordon images/cordon logo 23.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ── Tokens ── */
+    :root {
+      --rose:      #C9847A;
+      --blush:     #F2E6E0;
+      --champagne: #F7F0E8;
+      --bark:      #2C1F1A;
+      --mink:      #7A5C54;
+      --white:     #FDFAF7;
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'DM Sans', system-ui, sans-serif;
+      --radius:    14px;
+      --tr: 0.35s cubic-bezier(0.4,0,0.2,1);
+      --shadow: 0 4px 28px rgba(44,31,26,0.10);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--white);
+      color: var(--bark);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ══════════════════════════════
+       HEADER
+    ══════════════════════════════ */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white);
+      box-shadow: 0 1px 0 rgba(44,31,26,0.08);
+    }
+    .header-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 24px; height: 70px;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 16px;
+    }
+    .logo-left { height: 140px; width: auto; display: block; }
+    header hr.divider {
+      border: none; height: 10px;
+      background: rgba(201,132,122,0.18);
+      margin: 0;
+    }
+
+    nav#navbar { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+    .nav-link {
+      font-size: 0.85rem; font-weight: 500; color: var(--mink);
+      padding: 6px 10px; border-radius: 6px;
+      transition: color var(--tr), background var(--tr); white-space: nowrap;
+    }
+    .nav-link:hover, .nav-link.active { color: var(--rose); background: var(--blush); }
+    .nav-link.button {
+      background: var(--rose); color: #fff;
+      padding: 7px 14px; border-radius: 30px;
+    }
+    .nav-link.button:hover { background: var(--mink); color: #fff; }
+    .nav-link.button.active { background: var(--mink); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; flex-direction: column;
+      justify-content: space-between;
+      width: 26px; height: 18px;
+      cursor: pointer; background: none; border: none; padding: 0;
+      z-index: 200;
+    }
+    .hamburger span {
+      display: block; height: 2px; width: 100%; background: var(--bark);
+      border-radius: 2px; transition: transform var(--tr), opacity var(--tr);
+      margin: 0;
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* Mobile nav overlay — same nav#navbar element, toggled via .active */
+    nav#navbar.active {
+      display: flex; position: fixed; inset: 0;
+      background: var(--white); z-index: 150;
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 22px; padding: 40px 24px;
+      top: 0; left: 0; right: 0; bottom: 0;
+    }
+    nav#navbar.active .nav-link {
+      font-size: 1.35rem; font-family: var(--ff-display);
+      font-weight: 400; color: var(--bark); padding: 8px 0; letter-spacing: 0.03em;
+      background: none;
+    }
+    nav#navbar.active .nav-link.active { color: var(--rose); }
+    nav#navbar.active .nav-link.button {
+      font-family: var(--ff-body); font-size: 1rem;
+      padding: 12px 32px; border-radius: 30px;
+      background: var(--rose); color: #fff;
+    }
+
+    /* ══════════════════════════════
+       HERO
+    ══════════════════════════════ */
+    #hero {
+      position: relative;
+      height: clamp(420px, 80vh, 760px);
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(160deg, rgba(44,31,26,0.62) 0%, rgba(201,132,122,0.20) 100%),
+        url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1600&q=80') center/cover no-repeat;
+      transform: scale(1.06);
+      transition: transform 7s ease-out;
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-content {
+      position: relative; z-index: 2; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 24px; color: #fff;
+      gap: 16px;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: rgba(255,255,255,0.7);
+      opacity: 0; transform: translateY(14px);
+      transition: opacity 0.7s 0.1s, transform 0.7s 0.1s;
+    }
+    .hero-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2.2rem, 6vw, 4.2rem);
+      font-weight: 300; line-height: 1.1;
+      letter-spacing: 0.02em; max-width: 700px;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.7s 0.25s, transform 0.7s 0.25s;
+    }
+    .hero-sub {
+      font-size: clamp(0.9rem, 2vw, 1.05rem);
+      color: rgba(255,255,255,0.8); max-width: 500px;
+      font-weight: 300;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.7s 0.4s, transform 0.7s 0.4s;
+    }
+    .hero-actions {
+      display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.7s 0.55s, transform 0.7s 0.55s;
+    }
+    .hero-content.animate .hero-eyebrow,
+    .hero-content.animate .hero-title,
+    .hero-content.animate .hero-sub,
+    .hero-content.animate .hero-actions {
+      opacity: 1; transform: translateY(0);
+    }
+    .btn-primary {
+      display: inline-block; padding: 14px 36px;
+      background: var(--rose); color: #fff;
+      border-radius: 30px; font-size: 0.875rem;
+      font-weight: 500; letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background var(--tr), transform var(--tr);
+    }
+    .btn-primary:hover { background: #b87268; transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-block; padding: 13px 32px;
+      background: rgba(255,255,255,0.12);
+      color: #fff; border-radius: 30px;
+      font-size: 0.875rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      border: 1.5px solid rgba(255,255,255,0.45);
+      backdrop-filter: blur(6px);
+      transition: background var(--tr), transform var(--tr);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.22); transform: translateY(-2px); }
+
+    /* Scroll hint */
+    .scroll-hint {
+      position: absolute; bottom: 24px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column;
+      align-items: center; gap: 6px;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.7rem; letter-spacing: 0.12em;
+      text-transform: uppercase; z-index: 3;
+      opacity: 0; animation: fadeUp 1s 1.5s forwards;
+    }
+    .scroll-hint::after {
+      content: '';
+      width: 1px; height: 36px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+      animation: pulse 1.6s infinite;
+    }
+    @keyframes fadeUp { to { opacity: 1; } }
+    @keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+    /* ══════════════════════════════
+       STATS BAR
+    ══════════════════════════════ */
+    #stats {
+      background: var(--bark);
+      padding: 36px 24px;
+    }
+    .stats-inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; justify-content: space-around;
+      gap: 24px; flex-wrap: wrap; text-align: center;
+    }
+    .stat-item { color: #fff; min-width: 100px; }
+    .stat-number {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 300; color: var(--rose);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.75rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.55);
+      margin-top: 6px;
+    }
+
+    /* ══════════════════════════════
+       SECTION SHARED
+    ══════════════════════════════ */
+    .section-wrap {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+    }
+    .section-head {
+      text-align: center; margin-bottom: 40px;
+    }
+    .section-label {
+      font-size: 0.72rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--rose);
+      font-weight: 500; margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: var(--ff-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 300; color: var(--bark);
+      letter-spacing: 0.02em; line-height: 1.2;
+    }
+    .section-sub {
+      color: var(--mink); font-size: 0.95rem;
+      max-width: 480px; margin: 10px auto 0;
+    }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ══════════════════════════════
+       SERVICES
+    ══════════════════════════════ */
+    #services { padding: 80px 24px; }
+    .services-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--white);
+      border: 1px solid rgba(201,132,122,0.16);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform var(--tr), box-shadow var(--tr);
+      cursor: pointer;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(44,31,26,0.13);
+    }
+    .card-body { padding: 22px; }
+    .card-cat {
+      font-size: 0.68rem; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--rose);
+      font-weight: 500; margin-bottom: 6px;
+    }
+    .card-title {
+      font-family: var(--ff-display); font-size: 1.3rem;
+      font-weight: 600; color: var(--bark);
+      margin-bottom: 8px; line-height: 1.2;
+    }
+    .card-text {
+      font-size: 0.86rem; color: var(--mink);
+      line-height: 1.6; margin-bottom: 18px;
+    }
+    .card-link {
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--rose); border-bottom: 1px solid var(--rose);
+      padding-bottom: 1px;
+      transition: color var(--tr), border-color var(--tr);
+    }
+    .card-link:hover { color: var(--mink); border-color: var(--mink); }
+
+    /* ══════════════════════════════
+       WHY US
+    ══════════════════════════════ */
+    #why-us {
+      background: var(--champagne);
+      padding: 80px 24px;
+    }
+    .why-grid {
+      max-width: 1000px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 28px;
+      margin-top: 40px;
+    }
+    .why-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .why-title {
+      font-family: var(--ff-display); font-size: 1.15rem;
+      font-weight: 600; color: var(--bark); margin-bottom: 8px;
+    }
+    .why-text { font-size: 0.85rem; color: var(--mink); line-height: 1.6; }
+
+    /* ══════════════════════════════
+       INTIMATES SECTION
+    ══════════════════════════════ */
+    #intimates {
+      padding: 80px 24px;
+      background:
+        linear-gradient(160deg, rgba(44,31,26,0.82) 0%, rgba(44,31,26,0.68) 100%),
+        url('./images/CT10.jpg') center center / cover no-repeat;
+      color: #fff;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #intimates::before {
+      content: '✦';
+      position: absolute; font-size: 300px;
+      opacity: 0.03; top: -60px; left: -40px;
+      color: var(--rose); pointer-events: none; line-height: 1;
+    }
+    #intimates .section-label { color: var(--rose); }
+    #intimates .section-title { color: #fff; margin-bottom: 14px; }
+    #intimates p {
+      color: rgba(255,255,255,0.65);
+      font-size: 1rem; max-width: 440px;
+      margin: 0 auto 30px;
+    }
+    .btn-intimates {
+      display: inline-block;
+      padding: 14px 40px; background: var(--rose);
+      color: #fff; border-radius: 30px;
+      font-size: 0.875rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      transition: background var(--tr), transform var(--tr);
+    }
+    .btn-intimates:hover { background: #b87268; transform: translateY(-2px); }
+
+    /* ══════════════════════════════
+       CTA BANNER
+    ══════════════════════════════ */
+    #cta {
+      padding: 80px 24px; text-align: center;
+      background: linear-gradient(135deg, var(--bark) 0%, #4a2e27 100%);
+      color: #fff;
+    }
+    #cta .section-label { color: var(--rose); }
+    #cta .section-title { color: #fff; margin-bottom: 14px; }
+    #cta p { color: rgba(255,255,255,0.65); font-size: 1rem; margin-bottom: 30px; }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    footer {
+      background: #1a100d;
+      color: rgba(255,255,255,0.55);
+      padding: 40px 24px; text-align: center;
+      font-size: 0.82rem;
+    }
+    .footer-brand {
+      font-family: var(--ff-display); font-size: 1.1rem;
+      color: rgba(255,255,255,0.85); margin-bottom: 6px;
+    }
+    .footer-credit { margin-bottom: 14px; }
+    .footer-highlight { color: var(--rose); }
+    .footer-social { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .footer-link { color: rgba(255,255,255,0.45); transition: color var(--tr); }
+    .footer-link:hover { color: var(--rose); }
+
+    /* ══════════════════════════════
+       SCROLL TO TOP
+    ══════════════════════════════ */
+    #scroll-top {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 46px; height: 46px; background: var(--rose);
+      color: #fff; border: none; border-radius: 50%;
+      font-size: 1.2rem; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(201,132,122,0.4);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity var(--tr), transform var(--tr); z-index: 90;
+    }
+    #scroll-top.visible { opacity: 1; pointer-events: auto; }
+    #scroll-top:hover { transform: scale(1.1); }
+
+    /* ══════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════ */
+    @media (max-width: 1024px) {
+      .header-inner { padding: 0 18px; }
+      nav#navbar { gap: 2px; }
+      .nav-link { font-size: 0.8rem; padding: 6px 8px; }
+    }
+    @media (max-width: 768px) {
+      nav#navbar:not(.active) { display: none; }
+      .hamburger { display: flex; }
+      .services-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .stats-inner { gap: 20px; }
+      #intimates {
+        min-height: 360px;
+        padding: 60px 20px;
+        background-attachment: scroll;
+      }
+    }
+    @media (max-width: 480px) {
+      .logo-left { height: 34px; }
+      .header-inner { height: 60px; padding: 0 16px; }
+      nav#navbar.active .nav-link { font-size: 1.15rem; }
+      .why-grid { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      #intimates {
+        min-height: 300px;
+        padding: 48px 16px;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header id="main-header">
+    <div class="header-inner">
+      <a href="./index.html" aria-label="Cordon Beauty Bar home">
+        <br>
+        <img src="cordon images/cordon logo 23.png" alt="Cordon Beauty Bar Logo" class="logo-left">
+      </a>
+      <nav id="navbar" aria-label="Main navigation">
+        <a href="./index.html" class="nav-link active">Home</a>
+        <a href="./pages/About.html" class="nav-link">About</a>
+        <a href="./pages/Services.html" class="nav-link">Services</a>
+        <a href="./pages/Pricelist.html" class="nav-link">Price List</a>
+        <a href="./pages/Testimonials.html" class="nav-link">Testimonials</a>
+        <a href="./pages/Contact.html" class="nav-link">Contact</a>
+        <a href="./pages/Careers.html" class="nav-link button">Careers</a>
+        <a href="./pages/Book-online.html" class="nav-link button">Book Online</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navbar">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <br>
+    <hr class="divider">
+  </header>
+
+  <!-- ── Hero ── -->
+  <section id="hero" aria-label="Hero">
+    <div class="hero-bg" id="hero-bg"></div>
+    <div class="hero-content" id="hero-content">
+      <p class="hero-eyebrow">Welcome to Cordon Beauty Bar · Fairview</p>
+      <h1 class="hero-title">Your Daily Escape in the Heart of Fairview</h1>
+      <p class="hero-sub">Professional nails, lashes, hair & make-up designed to help you look and feel your absolute best.</p>
+      <div class="hero-actions">
+        <a href="./pages/Book-online.html" class="btn-primary">Book Appointment</a>
+        <a href="./pages/Services.html" class="btn-ghost">Explore Services</a>
+      </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">Scroll</div>
+  </section>
+
+  <!-- ── Stats Bar ── -->
+  <section id="stats" aria-label="Key numbers">
+    <div class="stats-inner">
+      <div class="stat-item reveal">
+        <div class="stat-number" data-target="5000">0</div>
+        <div class="stat-label">Happy Clients</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-number" data-target="8">0</div>
+        <div class="stat-label">Services Offered</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-number" data-target="6">0</div>
+        <div class="stat-label">Years of Excellence</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-number" data-target="100">0</div>
+        <div class="stat-label">% Satisfaction</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Services ── -->
+  <section id="services" aria-label="Our services">
+    <div class="section-head reveal">
+      <p class="section-label">What We Do</p>
+      <h2 class="section-title">Our Signature Services</h2>
+      <p class="section-sub">Every treatment is crafted with care, skill, and premium products.</p>
+    </div>
+    <div class="services-grid" id="services-grid">
+      <!-- Injected by JS -->
+    </div>
+  </section>
+
+  <!-- ── Why Us ── -->
+  <section id="why-us" aria-label="Why choose us">
+    <div class="section-head reveal">
+      <p class="section-label">Why Cordon</p>
+      <h2 class="section-title">The Cordon Difference</h2>
+    </div>
+    <div class="why-grid" id="why-grid">
+      <!-- Injected by JS -->
+    </div>
+  </section>
+
+  
+  <!-- ── Cordon Intimates ── -->
+  <section id="intimates" aria-label="Cordon Intimates">
+    <div class="reveal">
+      <p class="section-label">Sister Brand</p>
+      <h2 class="section-title">Discover Cordon Intimates</h2>
+      <p>Explore our exclusive lingerie collection — luxury, comfort, and confidence delivered online.</p>
+      <a href="https://cordonintimates.com/" target="_blank" rel="noopener" class="btn-intimates">Shop Now</a>
+    </div>
+  </section>
+  <!-- ── CTA ── -->
+  <section id="cta" aria-label="Book now">
+    <div class="reveal">
+      <p class="section-label">Ready?</p>
+      <h2 class="section-title">Treat Yourself Today</h2>
+      <p>Book your appointment online in minutes — we can't wait to see you.</p>
+      <a href="./pages/Book-online.html" class="btn-primary">Book Online</a>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer id="footer">
+    <div class="footer-container">
+      <p class="footer-brand">Cordon Beauty Bar</p>
+      <p class="footer-credit">
+        Developed &amp; Maintained by <span class="footer-highlight">Zukhanye Ntlama</span>
+      </p>
+      <div class="footer-social">
+        <a href="mailto:info@cordonbeauty.co.za" class="footer-link">📧 Email</a>
+        <a href="tel:+27213566776" class="footer-link">📞 Call</a>
+        <a href="https://www.linkedin.com/in/zukhanye-ntlama" target="_blank" rel="noopener" class="footer-link">🌐 LinkedIn</a>
+      </div>
+      <p style="margin-top:16px;font-size:0.75rem;">© 2026 Cordon Beauty Bar · All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <!-- ── Scroll to top ── -->
+  <button id="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <!-- ════════════════════════════
+       JAVASCRIPT
+  ════════════════════════════ -->
+  <script>
+    /* ═══════════════════════════
+       DATA
+    ═══════════════════════════ */
+    const servicesData = [
+      {
+        cat: 'Nails',
+        title: 'Nails',
+        text: 'Manicures, pedicures, gel nails, nail art — crafted with precision for flawless results.',
+        href: './pages/Nails.html'
+      },
+      {
+        cat: 'Lashes & Brows',
+        title: 'Lashes & Brows',
+        text: 'Extensions, lifts, lamination, and brow shaping to frame your natural beauty.',
+        href: './pages/Lashes.html'
+      },
+      {
+        cat: 'Hair',
+        title: 'Hair Treatment',
+        text: 'Styling, colouring, highlights, and keratin treatments for luminous, healthy hair.',
+        href: './pages/Hair-Treatment.html'
+      },
+      {
+        cat: 'Wigs',
+        title: 'Wig Installation',
+        text: 'Professional wig installation and customization for a seamless, natural finish.',
+        href: './pages/Wig-Installation.html'
+      },
+      {
+        cat: 'Make-Up',
+        title: 'Make-Up',
+        text: 'Everyday glam to bridal perfection — our artists bring out your best features.',
+        href: './pages/Make-Up.html'
+      },
+      {
+        cat: 'Hair',
+        title: 'Hair Plaiting',
+        text: 'Beautiful, long-lasting plaiting styles with quality extensions and skilled hands.',
+        href: './pages/Hair-Plaiting.html'
+      },
+    ];
+
+    const whyData = [
+      { title: 'Award-Winning Team', text: 'Our stylists are trained, certified, and passionate about their craft.' },
+      { title: 'Premium Products', text: 'We use only top-tier, skin-safe products on every client, every time.' },
+      { title: 'Easy Booking', text: 'Book online in minutes — no phone call required.' },
+      { title: 'Relaxing Atmosphere', text: 'Step into a calm, welcoming space designed to melt your stress away.' },
+    ];
+
+    /* ═══════════════════════════
+       BUILD SERVICES GRID
+    ═══════════════════════════ */
+    const servicesGrid = document.getElementById('services-grid');
+    servicesData.forEach((svc, i) => {
+      const card = document.createElement('article');
+      card.className = 'service-card reveal';
+      card.style.transitionDelay = `${i * 80}ms`;
+      card.innerHTML = `
+        <div class="card-body">
+          <p class="card-cat">${svc.cat}</p>
+          <h3 class="card-title">${svc.title}</h3>
+          <p class="card-text">${svc.text}</p>
+          <a href="${svc.href}" class="card-link">View Rates →</a>
+        </div>
+      `;
+      card.addEventListener('click', e => {
+        if (!e.target.closest('a')) window.location.href = svc.href;
+      });
+      servicesGrid.appendChild(card);
+    });
+
+    /* ═══════════════════════════
+       BUILD WHY CARDS
+    ═══════════════════════════ */
+    const whyGrid = document.getElementById('why-grid');
+    whyData.forEach((w, i) => {
+      const card = document.createElement('div');
+      card.className = 'why-card reveal';
+      card.style.transitionDelay = `${i * 80}ms`;
+      card.innerHTML = `
+        <h3 class="why-title">${w.title}</h3>
+        <p class="why-text">${w.text}</p>
+      `;
+      whyGrid.appendChild(card);
+    });
+
+    /* ═══════════════════════════
+       HERO ANIMATION
+    ═══════════════════════════ */
+    window.addEventListener('load', () => {
+      document.getElementById('hero-bg').classList.add('loaded');
+      setTimeout(() => {
+        document.getElementById('hero-content').classList.add('animate');
+      }, 120);
+    });
+
+    /* ═══════════════════════════
+       COUNTER ANIMATION
+    ═══════════════════════════ */
+    function animateCounter(el) {
+      const target = +el.dataset.target;
+      const duration = 1600;
+      const step = 16;
+      const increment = target / (duration / step);
+      let current = 0;
+      const timer = setInterval(() => {
+        current = Math.min(current + increment, target);
+        el.textContent = target >= 1000
+          ? (current / 1000).toFixed(1) + 'k+'
+          : Math.floor(current) + (target === 100 ? '%' : '+');
+        if (current >= target) {
+          el.textContent = target >= 1000
+            ? (target / 1000).toFixed(0) + 'k+'
+            : target + (target === 100 ? '%' : '+');
+          clearInterval(timer);
+        }
+      }, step);
+    }
+
+    /* ═══════════════════════════
+       INTERSECTION OBSERVER
+       (scroll reveal + counters)
+    ═══════════════════════════ */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Trigger counters
+          entry.target.querySelectorAll('[data-target]').forEach(animateCounter);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Stats section itself (for counters)
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('[data-target]').forEach(animateCounter);
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    const statsSection = document.getElementById('stats');
+    if (statsSection) statsObserver.observe(statsSection);
+
+    /* ═══════════════════════════
+       HAMBURGER
+    ═══════════════════════════ */
+    const hamburger = document.getElementById('hamburger');
+    const navbar = document.getElementById('navbar');
+
+    function closeMenu() {
+      navbar.classList.remove('active');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    function toggleMenu() {
+      const isActive = navbar.classList.toggle('active');
+      hamburger.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+      document.body.style.overflow = isActive ? 'hidden' : '';
+    }
+
+    if (hamburger && navbar) {
+      hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      navbar.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 768) closeMenu();
+        });
+      });
+
+      document.addEventListener('click', e => {
+        const isClickInsideNav = navbar.contains(e.target);
+        const isClickOnHamburger = hamburger.contains(e.target);
+        if (!isClickInsideNav && !isClickOnHamburger && navbar.classList.contains('active')) {
+          closeMenu();
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && navbar.classList.contains('active')) {
+          closeMenu();
+        }
+      });
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && navbar.classList.contains('active')) {
+          closeMenu();
+        }
+      });
+    }
+
+    /* ═══════════════════════════
+       SCROLL-TO-TOP
+    ═══════════════════════════ */
+    const scrollTopBtn = document.getElementById('scroll-top');
+    window.addEventListener('scroll', () => {
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    scrollTopBtn.addEventListener('click', () =>
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    );
+
+    /* ═══════════════════════════
+       ACTIVE NAV ON SCROLL
+    ═══════════════════════════ */
+    const navLinks = document.querySelectorAll('nav#navbar .nav-link:not(.button)');
+    const sectionIds = ['hero', 'services', 'why-us', 'intimates', 'cta'];
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          const id = entry.target.id;
+          const match = document.querySelector(`nav#navbar a[href*="${id}"]`) ||
+                        document.querySelector('nav#navbar a[href*="index"]');
+          if (match) match.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -40% 0px' });
+
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) navObserver.observe(el);
+    });
+  </script>
+</body>
+</html>

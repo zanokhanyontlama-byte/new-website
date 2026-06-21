@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cordon Beauty Bar | Testimonials</title>
+  <link rel="stylesheet" href="../CSS/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- ════════ Page-scoped styles (Testimonials page only) ════════ -->
+  <!-- Namespaced under body.testimonials-page so these rules never touch the
+       shared header / nav / footer styling in ../CSS/style.css -->
+  <style>
+    body.testimonials-page {
+      --tm-rose:      #C9847A;
+      --tm-blush:     #F2E6E0;
+      --tm-champagne: #F7F0E8;
+      --tm-bark:      #2C1F1A;
+      --tm-mink:      #7A5C54;
+      --tm-white:     #FDFAF7;
+      --tm-ff-display: 'Cormorant Garamond', Georgia, serif;
+      --tm-ff-body:    'DM Sans', system-ui, sans-serif;
+      --tm-radius:    14px;
+      --tm-tr: 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    body.testimonials-page {
+      font-family: var(--tm-ff-body);
+      color: var(--tm-bark);
+      background: var(--tm-white);
+      margin: 0;
+    }
+
+    /* ── Header & Navigation ── */
+    body.testimonials-page header#main-header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--tm-white);
+      box-shadow: 0 1px 0 rgba(44,31,26,0.08);
+    }
+    body.testimonials-page header#main-header .header-container {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 24px; height: 70px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+
+
+
+
+
+    body.testimonials-page .logo-left { height: 140px; width: auto; display: block; }
+
+
+
+
+    body.testimonials-page header#main-header hr.divider {
+      border: none; height: 1px;
+      background: rgba(201,132,122,0.18);
+      margin: 0;
+    }
+    body.testimonials-page nav#navbar {
+      display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+    }
+    body.testimonials-page .nav-link {
+      font-family: var(--tm-ff-body);
+      font-size: 0.85rem; font-weight: 500;
+      color: var(--tm-mink); padding: 6px 10px; border-radius: 6px;
+      transition: color var(--tm-tr), background var(--tm-tr); white-space: nowrap;
+    }
+    body.testimonials-page .nav-link:hover,
+    body.testimonials-page .nav-link.active { color: var(--tm-rose); background: var(--tm-blush); }
+    body.testimonials-page .nav-link.button {
+      background: var(--tm-rose); color: #fff;
+      padding: 7px 14px; border-radius: 30px;
+    }
+    body.testimonials-page .nav-link.button:hover { background: var(--tm-mink); color: #fff; }
+    body.testimonials-page .nav-link.button.active { background: var(--tm-mink); }
+
+    /* ── Hamburger ── */
+    body.testimonials-page .hamburger {
+      display: none; flex-direction: column; justify-content: space-between;
+      width: 26px; height: 18px; cursor: pointer;
+      background: none; border: none; padding: 0; z-index: 200;
+    }
+    body.testimonials-page .hamburger span {
+      display: block; height: 2px; width: 100%; background: var(--tm-bark);
+      border-radius: 2px; transition: transform var(--tm-tr), opacity var(--tm-tr);
+      margin: 0;
+    }
+    body.testimonials-page .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    body.testimonials-page .hamburger.active span:nth-child(2) { opacity: 0; }
+    body.testimonials-page .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* ── Mobile Nav Overlay ── */
+    body.testimonials-page nav#navbar.active {
+      display: flex; position: fixed; inset: 0;
+      background: var(--tm-white); z-index: 150;
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 22px; padding: 40px 24px;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border-radius: 0; box-shadow: none;
+    }
+    body.testimonials-page nav#navbar.active .nav-link {
+      font-size: 1.35rem; font-family: var(--tm-ff-display);
+      font-weight: 400; color: var(--tm-bark); padding: 8px 0; letter-spacing: 0.03em;
+      background: none;
+    }
+    body.testimonials-page nav#navbar.active .nav-link.active { color: var(--tm-rose); }
+    body.testimonials-page nav#navbar.active .nav-link.button {
+      font-family: var(--tm-ff-body); font-size: 1rem;
+      padding: 12px 32px; border-radius: 30px;
+      background: var(--tm-rose); color: #fff;
+    }
+
+    /* ── Hero ── */
+    body.testimonials-page #hero {
+      height: 50vh; min-height: 280px;
+      background: linear-gradient(135deg, var(--tm-bark) 0%, #4a2e27 100%);
+      position: relative; width: 100%;
+    }
+    body.testimonials-page .hero-overlay {
+      height: 100%; display: flex; justify-content: center; align-items: center;
+      text-align: center; color: #fff; padding: 20px;
+    }
+    body.testimonials-page .hero-content { max-width: 800px; }
+    body.testimonials-page .hero-title {
+      font-family: var(--tm-ff-display);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 300; letter-spacing: 0.02em;
+      line-height: 1.1; margin-bottom: 14px;
+    }
+    body.testimonials-page .hero-text {
+      font-size: clamp(0.92rem, 2vw, 1rem);
+      line-height: 1.6; color: rgba(255,255,255,0.85);
+    }
+
+    /* ── Section title ── */
+    body.testimonials-page .section-title {
+      text-align: center; padding: 56px 20px 8px;
+      font-family: var(--tm-ff-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 300; color: var(--tm-bark);
+      position: relative;
+    }
+    body.testimonials-page .section-title::after {
+      content: ''; display: block;
+      width: 48px; height: 2px;
+      background: var(--tm-rose);
+      margin: 14px auto 0;
+    }
+
+    /* ── Testimonials grid ── */
+    body.testimonials-page .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+      padding: 30px 24px 64px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    body.testimonials-page .testimonial-card {
+      background: #fff;
+      border-radius: var(--tm-radius);
+      border: 1px solid rgba(201,132,122,0.16);
+      box-shadow: 0 4px 20px rgba(44,31,26,0.06);
+      padding: 22px 24px;
+      transition: transform var(--tm-tr), box-shadow var(--tm-tr);
+      opacity: 0; transform: translateY(20px);
+      position: relative;
+    }
+    body.testimonials-page .testimonial-card::before {
+      content: '"';
+      font-family: var(--tm-ff-display);
+      font-size: 3.2rem; color: var(--tm-blush);
+      position: absolute; top: 4px; left: 16px;
+      line-height: 1; pointer-events: none;
+    }
+    body.testimonials-page .testimonial-card.visible {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    body.testimonials-page .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 28px rgba(44,31,26,0.12);
+    }
+    body.testimonials-page .testimonial-card.visible:hover { transform: translateY(-5px); }
+
+    body.testimonials-page .testimonial-text {
+      font-family: var(--tm-ff-display);
+      font-style: italic; font-size: 1.02rem; line-height: 1.6;
+      color: var(--tm-bark); margin-bottom: 14px;
+      word-wrap: break-word; position: relative; z-index: 1;
+    }
+    body.testimonials-page .testimonial-author {
+      font-weight: 600; color: var(--tm-rose); font-size: 0.92rem;
+    }
+    body.testimonials-page .testimonial-date {
+      font-size: 0.74rem; color: var(--tm-mink); margin-top: 2px;
+    }
+
+    /* ── CTA ── */
+    body.testimonials-page #cta {
+      text-align: center; padding: 52px 24px;
+      background: linear-gradient(135deg, var(--tm-blush) 0%, var(--tm-champagne) 100%);
+    }
+    body.testimonials-page .cta-title {
+      font-family: var(--tm-ff-display);
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      font-weight: 300; color: var(--tm-bark); margin-bottom: 10px;
+    }
+    body.testimonials-page .cta-text {
+      margin: 0 auto 22px; font-size: clamp(0.88rem, 2vw, 0.95rem);
+      max-width: 560px; color: var(--tm-mink); line-height: 1.6;
+    }
+    body.testimonials-page .cta-button {
+      background: var(--tm-rose); color: #fff;
+      padding: 13px 36px; border-radius: 30px;
+      text-decoration: none; font-size: 0.875rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: background var(--tm-tr), transform var(--tm-tr);
+      display: inline-block;
+    }
+    body.testimonials-page .cta-button:hover { background: var(--tm-mink); transform: translateY(-2px); }
+
+    /* ── Footer ── */
+    body.testimonials-page footer#footer {
+      background: #1a100d; color: rgba(255,255,255,0.6);
+      padding: 36px 24px; text-align: center; font-size: 0.82rem;
+    }
+    body.testimonials-page footer .footer-brand {
+      font-family: var(--tm-ff-display); font-size: 1.05rem;
+      color: rgba(255,255,255,0.85); margin-bottom: 6px;
+    }
+    body.testimonials-page footer .footer-credit { margin-bottom: 14px; }
+    body.testimonials-page footer .footer-highlight { color: var(--tm-rose); }
+    body.testimonials-page .footer-social { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+    body.testimonials-page footer .footer-link { color: rgba(255,255,255,0.5); transition: color var(--tm-tr); text-decoration: none; }
+    body.testimonials-page footer .footer-link:hover { color: var(--tm-rose); text-decoration: none; }
+
+    /* ── Back to top ── */
+    body.testimonials-page #back-to-top {
+      position: fixed; bottom: 28px; right: 28px;
+      background: var(--tm-rose); color: #fff;
+      border: none; width: 46px; height: 46px; border-radius: 50%;
+      font-size: 1.2rem; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(201,132,122,0.4);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 90; transition: opacity var(--tm-tr), transform var(--tm-tr);
+      opacity: 0; pointer-events: none;
+    }
+    body.testimonials-page #back-to-top.show { opacity: 1; pointer-events: auto; }
+    body.testimonials-page #back-to-top:hover { transform: scale(1.1); background: var(--tm-mink); }
+
+    /* ── Responsive: Tablet & small laptop ── */
+    @media (max-width: 1024px) {
+      body.testimonials-page header#main-header .header-container { padding: 0 18px; }
+      body.testimonials-page nav#navbar { gap: 2px; }
+      body.testimonials-page .nav-link { font-size: 0.8rem; padding: 6px 8px; }
+      body.testimonials-page .card-container { gap: 18px; padding: 26px 20px 56px; }
+    }
+    /* ── Responsive: Phone & portrait tablet ── */
+    @media (max-width: 768px) {
+      body.testimonials-page nav#navbar:not(.active) { display: none; }
+      body.testimonials-page .hamburger { display: flex; }
+      body.testimonials-page #hero { min-height: 240px; }
+      body.testimonials-page .card-container { grid-template-columns: 1fr; padding: 24px 18px 48px; gap: 16px; }
+      body.testimonials-page .section-title { padding: 44px 18px 6px; }
+      body.testimonials-page #cta { padding: 40px 18px; }
+      body.testimonials-page #back-to-top { bottom: 20px; right: 20px; width: 40px; height: 40px; font-size: 1.05rem; }
+    }
+    /* ── Responsive: Small phones ── */
+    @media (max-width: 480px) {
+      body.testimonials-page .logo-left { height: 34px; }
+      body.testimonials-page header#main-header .header-container { height: 60px; padding: 0 16px; }
+      body.testimonials-page .hero-content { padding: 0 10px; }
+      body.testimonials-page .testimonial-card { padding: 18px 18px; }
+      body.testimonials-page .footer-social { gap: 10px; }
+      body.testimonials-page footer .footer-link { font-size: 0.78rem; }
+      body.testimonials-page nav#navbar.active .nav-link { font-size: 1.15rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      body.testimonials-page *, body.testimonials-page *::before, body.testimonials-page *::after { transition: none !important; }
+      body.testimonials-page .testimonial-card { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body id="page-body" class="testimonials-page">
+
+  <!-- Header -->
+  <header id="main-header">
+    <div class="header-container">
+      <img src="../cordon images/cordon logo 23.png" alt="Cordon Beauty Bar Logo" class="logo-left">
+      <nav id="navbar">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="./About.html" class="nav-link">About</a>
+        <a href="./Services.html" class="nav-link">Services</a>
+        <a href="./Pricelist.html" class="nav-link">Price List</a>
+        <a href="./Testimonials.html" class="nav-link">Testimonials</a>
+        <a href="./Contact.html" class="nav-link">Contact</a>
+        <a href="./Careers.html" class="nav-link button">Careers</a>
+        <a href="./Book-online.html" class="nav-link button">Book Online</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navbar">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <br>
+    <hr class="divider">
+  </header>
+
+  <!-- Testimonials Hero -->
+  <section id="hero">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h2 class="hero-title">What Our Clients Say</h2>
+        <p class="hero-text">Discover real experiences from our happy clients who trust Cordon Beauty Bar for their self‑care and pampering.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials">
+    <h2 class="section-title">Client Testimonials</h2>
+    <div class="card-container">
+      <!-- Testimonial Cards -->
+      <div class="card testimonial-card">
+        <p class="testimonial-text">"Absolutely loved my manicure! The team at Cordon Beauty Bar is so professional and welcoming."</p>
+        <p class="testimonial-author">- Sarah M.</p>
+        <p class="testimonial-date">March 05, 2026 · 10:15 AM</p>
+      </div>
+      <div class="card testimonial-card">
+        <p class="testimonial-text">"My facial left my skin glowing. I'll definitely recommend this place to my friends."</p>
+        <p class="testimonial-author">- Daniel K.</p>
+        <p class="testimonial-date">March 12, 2026 · 2:45 PM</p>
+      </div>
+      <div class="card testimonial-card">
+        <p class="testimonial-text">"The atmosphere is so relaxing. Perfect escape after a long week."</p>
+        <p class="testimonial-author">- Priya S.</p>
+        <p class="testimonial-date">March 20, 2026 · 4:30 PM</p>
+      </div>
+      <div class="card testimonial-card">
+        <p class="testimonial-text">"I had lash extensions done and they look amazing! Great service."</p>
+        <p class="testimonial-author">- Emily R.</p>
+        <p class="testimonial-date">April 02, 2026 · 11:00 AM</p>
+      </div>
+      <div class="card testimonial-card">
+        <p class="testimonial-text">"Friendly staff and excellent skincare treatments. Highly recommend."</p>
+        <p class="testimonial-author">- Michael T.</p>
+        <p class="testimonial-date">April 15, 2026 · 3:20 PM</p>
+      </div>
+      <div class="card testimonial-card">
+        <p class="testimonial-text">"The pedicure was so relaxing. I'll be back soon!"</p>
+        <p class="testimonial-author">- Jessica L.</p>
+        <p class="testimonial-date">May 01, 2026 · 9:45 AM</p>
+      </div>
+      <div class="card testimonial-card">
+        <p class="testimonial-text">"I booked online and the process was super easy. Great experience overall."</p>
+        <p class="testimonial-author">- Thabo N.</p>
+        <p class="testimonial-date">May 18, 2026 · 1:10 PM</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section id="cta">
+    <h2 class="cta-title">Join Our Happy Clients</h2>
+    <p class="cta-text">Book your appointment today and experience the same luxury care our clients rave about.</p>
+    <a href="Book-online.html" class="cta-button">Book Online</a>
+  </section>
+
+  <footer id="footer">
+    <div class="footer-container">
+      <p class="footer-brand">© 2026 Cordon Beauty Bar · All Rights Reserved</p>
+
+      <p class="footer-credit">
+        Developed &amp; Maintained by
+        <span class="footer-highlight">Zukhanye Ntlama</span>
+      </p>
+
+      <div class="footer-social">
+        <a href="mailto:info@cordonbeauty.co.za" class="footer-link">📧 Email</a>
+        <a href="tel:+27213566776" class="footer-link">📞 Call</a>
+        <a href="https://www.linkedin.com/in/zukhanye-ntlama" target="_blank" class="footer-link">🌐 LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top button -->
+  <button id="back-to-top" aria-label="Back to top">↑</button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      /* ---------- Hamburger menu toggle ---------- */
+      var hamburger = document.getElementById('hamburger');
+      var navbar = document.getElementById('navbar');
+
+      function closeMenu() {
+        navbar.classList.remove('active');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      function toggleMenu() {
+        var isActive = navbar.classList.toggle('active');
+        hamburger.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+        document.body.style.overflow = isActive ? 'hidden' : '';
+      }
+
+      if (hamburger && navbar) {
+        hamburger.addEventListener('click', function (e) {
+          e.stopPropagation();
+          toggleMenu();
+        });
+
+        /* Close menu when a nav link is clicked (mobile) */
+        var navLinks = navbar.querySelectorAll('.nav-link');
+        navLinks.forEach(function (link) {
+          link.addEventListener('click', function () {
+            if (window.innerWidth <= 768) {
+              closeMenu();
+            }
+          });
+        });
+
+        /* Close menu when clicking outside of it */
+        document.addEventListener('click', function (e) {
+          var isClickInsideNav = navbar.contains(e.target);
+          var isClickOnHamburger = hamburger.contains(e.target);
+          if (!isClickInsideNav && !isClickOnHamburger && navbar.classList.contains('active')) {
+            closeMenu();
+          }
+        });
+
+        /* Close menu automatically if window is resized back to desktop */
+        window.addEventListener('resize', function () {
+          if (window.innerWidth > 768 && navbar.classList.contains('active')) {
+            closeMenu();
+          }
+        });
+
+        /* Close menu on Escape key for accessibility */
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && navbar.classList.contains('active')) {
+            closeMenu();
+          }
+        });
+      }
+
+      /* ---------- Fade-in animation for testimonial cards on scroll ---------- */
+      var cards = document.querySelectorAll('.testimonial-card');
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.15
+        });
+
+        cards.forEach(function (card) {
+          observer.observe(card);
+        });
+      } else {
+        /* Fallback: just show all cards immediately if IntersectionObserver unsupported */
+        cards.forEach(function (card) {
+          card.classList.add('visible');
+        });
+      }
+
+      /* ---------- Back to top button ---------- */
+      var backToTopBtn = document.getElementById('back-to-top');
+
+      function handleScroll() {
+        if (window.scrollY > 300) {
+          backToTopBtn.classList.add('show');
+        } else {
+          backToTopBtn.classList.remove('show');
+        }
+      }
+
+      window.addEventListener('scroll', handleScroll);
+      handleScroll();
+
+      backToTopBtn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      /* ---------- Highlight active nav link based on current page ---------- */
+      var currentPage = window.location.pathname.split('/').pop() || 'Testimonials.html';
+      var allNavLinks = document.querySelectorAll('.nav-link');
+      allNavLinks.forEach(function (link) {
+        var linkPage = link.getAttribute('href').split('/').pop();
+        if (linkPage === currentPage) {
+          link.classList.add('active');
+        }
+      });
+
+    });
+  </script>
+
+</body>
+</html>

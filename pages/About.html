@@ -1,0 +1,448 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cordon Beauty Bar | About Us</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    body.about-page {
+      --ab-rose:      #C9847A;
+      --ab-blush:     #F2E6E0;
+      --ab-champagne: #F7F0E8;
+      --ab-bark:      #2C1F1A;
+      --ab-mink:      #7A5C54;
+      --ab-white:     #FDFAF7;
+      --ab-ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ab-ff-body:    'DM Sans', system-ui, sans-serif;
+      --ab-radius:    14px;
+      --ab-tr: 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    body.about-page {
+      font-family: var(--ab-ff-body);
+      color: var(--ab-bark);
+      background: var(--ab-white);
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    a { text-decoration: none; color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--ab-rose); outline-offset: 2px; }
+
+    /* ── Header & Navigation ── */
+    body.about-page header#main-header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--ab-white);
+      box-shadow: 0 1px 0 rgba(44,31,26,0.08);
+    }
+    body.about-page header#main-header .header-container {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 24px; height: 70px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    body.about-page .logo-left { height: 140px; width: auto; display: block; }
+
+    body.about-page nav#navbar {
+      display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+    }
+    body.about-page .nav-link {
+      font-family: var(--ab-ff-body);
+      font-size: 0.85rem; font-weight: 500;
+      color: var(--ab-mink); padding: 6px 10px; border-radius: 6px;
+      transition: color var(--ab-tr), background var(--ab-tr); white-space: nowrap;
+    }
+    body.about-page .nav-link:hover,
+    body.about-page .nav-link.active { color: var(--ab-rose); background: var(--ab-blush); }
+    body.about-page .nav-link.button {
+      background: var(--ab-rose); color: #fff;
+      padding: 7px 14px; border-radius: 30px;
+    }
+    body.about-page .nav-link.button:hover { background: var(--ab-mink); color: #fff; }
+
+    /* ── Hamburger ── */
+    body.about-page .ab-hamburger {
+      display: none; flex-direction: column; justify-content: space-between;
+      width: 26px; height: 18px; cursor: pointer;
+      background: none; border: none; padding: 0; z-index: 200;
+    }
+    body.about-page .ab-hamburger span {
+      display: block; height: 2px; background: var(--ab-bark);
+      border-radius: 2px; transition: transform var(--ab-tr), opacity var(--ab-tr);
+    }
+    body.about-page .ab-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    body.about-page .ab-hamburger.open span:nth-child(2) { opacity: 0; }
+    body.about-page .ab-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* ── Mobile Nav Overlay ── */
+    body.about-page .ab-mobile-nav {
+      display: none; position: fixed; inset: 0;
+      background: var(--ab-white); z-index: 150;
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 22px; padding: 40px 24px;
+    }
+    body.about-page .ab-mobile-nav.open { display: flex; }
+    body.about-page .ab-mobile-nav .ab-mobile-link {
+      font-size: 1.35rem; font-family: var(--ab-ff-display);
+      font-weight: 400; color: var(--ab-bark); padding: 8px 0; letter-spacing: 0.03em;
+    }
+    body.about-page .ab-mobile-nav .ab-mobile-link.active { color: var(--ab-rose); }
+    body.about-page .ab-mobile-nav .ab-mobile-button {
+      font-family: var(--ab-ff-body); font-size: 1rem;
+      padding: 12px 32px; border-radius: 30px;
+      background: var(--ab-rose); color: #fff;
+    }
+
+    /* ── Hero ── */
+    body.about-page #hero { position: relative; }
+    body.about-page .hero-background {
+      background: linear-gradient(135deg, var(--ab-bark) 0%, #4a2e27 100%);
+      position: relative; min-height: 360px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    body.about-page .hero-overlay {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      padding: 60px 24px;
+    }
+    body.about-page .hero-content { text-align: center; max-width: 560px; color: #fff; }
+    body.about-page .hero-title {
+      font-family: var(--ab-ff-display);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 300; letter-spacing: 0.02em;
+      line-height: 1.1; margin-bottom: 14px;
+    }
+    body.about-page .hero-text {
+      font-size: 0.98rem; line-height: 1.6;
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* ── Section base ── */
+    body.about-page .about-section {
+      max-width: 900px; margin: 0 auto;
+      padding: 56px 24px;
+    }
+    body.about-page .about-section:nth-of-type(even) { background: var(--ab-champagne); max-width: 100%; }
+    body.about-page .about-section:nth-of-type(even) > * { max-width: 900px; margin-left: auto; margin-right: auto; }
+    body.about-page .about-section#mission,
+    body.about-page .about-section#story { max-width: 760px; }
+    body.about-page .section-title {
+      font-family: var(--ab-ff-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 300; color: var(--ab-bark);
+      text-align: center; margin-bottom: 24px;
+      position: relative;
+    }
+    body.about-page .section-title::after {
+      content: ''; display: block;
+      width: 48px; height: 2px;
+      background: var(--ab-rose);
+      margin: 14px auto 0;
+    }
+    body.about-page .section-text {
+      font-size: 0.96rem; line-height: 1.75;
+      color: var(--ab-mink); text-align: center;
+    }
+
+    /* ── Values / Why-choose lists ── */
+    body.about-page .values-list,
+    body.about-page .why-list { list-style: none; max-width: 760px; margin: 0 auto; padding: 0; }
+    body.about-page .why-list { margin-top: 28px; }
+    body.about-page .values-list li,
+    body.about-page .why-list li {
+      background: #fff;
+      border: 1px solid rgba(201,132,122,0.18);
+      border-radius: var(--ab-radius);
+      padding: 18px 22px;
+      margin-bottom: 14px;
+      font-size: 0.9rem; line-height: 1.65; color: var(--ab-mink);
+      box-shadow: 0 2px 14px rgba(44,31,26,0.05);
+    }
+    body.about-page .values-list li strong,
+    body.about-page .why-list li strong {
+      display: block; color: var(--ab-bark);
+      font-family: var(--ab-ff-display);
+      font-size: 1.08rem; font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    /* ── Team gallery ── */
+    body.about-page .team-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 26px;
+      margin-top: 8px;
+    }
+    body.about-page .team-member {
+      text-align: center;
+      background: #fff;
+      border-radius: var(--ab-radius);
+      border: 1px solid rgba(201,132,122,0.16);
+      padding: 20px 16px 22px;
+      box-shadow: 0 4px 20px rgba(44,31,26,0.06);
+      transition: transform var(--ab-tr), box-shadow var(--ab-tr);
+    }
+    body.about-page .team-member:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(44,31,26,0.12);
+    }
+    body.about-page .team-image {
+      width: 110px; height: 110px;
+      border-radius: 50%; object-fit: cover;
+      margin: 0 auto 14px;
+      border: 3px solid var(--ab-blush);
+      display: block;
+    }
+    body.about-page .team-name {
+      font-family: var(--ab-ff-display);
+      font-size: 1.15rem; font-weight: 600;
+      color: var(--ab-bark); margin-bottom: 4px;
+    }
+    body.about-page .team-role {
+      font-size: 0.8rem; color: var(--ab-rose);
+      letter-spacing: 0.03em; font-weight: 500;
+    }
+
+    /* ── Footer ── */
+    body.about-page footer#footer {
+      background: #1a100d;
+      color: rgba(255,255,255,0.6);
+      padding: 36px 24px; text-align: center; font-size: 0.82rem;
+      margin-top: 0;
+    }
+    body.about-page footer .footer-brand {
+      font-family: var(--ab-ff-display); font-size: 1.05rem;
+      color: rgba(255,255,255,0.85); margin-bottom: 6px;
+    }
+    body.about-page footer .footer-credit { margin-bottom: 14px; }
+    body.about-page footer .footer-highlight { color: var(--ab-rose); }
+    body.about-page .footer-social { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+    body.about-page footer .footer-link { color: rgba(255,255,255,0.5); transition: color var(--ab-tr); }
+    body.about-page footer .footer-link:hover { color: var(--ab-rose); }
+
+    /* ── Scroll-to-top ── */
+    body.about-page #ab-scroll-top {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 46px; height: 46px;
+      background: var(--ab-rose); color: #fff;
+      border: none; border-radius: 50%; font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(201,132,122,0.4);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity var(--ab-tr), transform var(--ab-tr); z-index: 90;
+    }
+    body.about-page #ab-scroll-top.visible { opacity: 1; pointer-events: auto; }
+    body.about-page #ab-scroll-top:hover { transform: scale(1.1); }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      body.about-page header#main-header .header-container { padding: 0 18px; }
+      body.about-page nav#navbar { gap: 2px; }
+      body.about-page .nav-link { font-size: 0.8rem; padding: 6px 8px; }
+      body.about-page .about-section { padding: 48px 20px; }
+      body.about-page .team-gallery { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 20px; }
+    }
+    @media (max-width: 768px) {
+      body.about-page nav#navbar { display: none; }
+      body.about-page .ab-hamburger { display: flex; }
+      body.about-page .hero-background { min-height: 280px; }
+      body.about-page .hero-overlay { padding: 40px 20px; }
+      body.about-page .about-section { padding: 40px 18px; }
+      body.about-page .team-gallery { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      body.about-page .team-image { width: 92px; height: 92px; }
+      body.about-page .team-member { padding: 16px 12px 18px; }
+    }
+    @media (max-width: 480px) {
+      body.about-page .logo-left { height: 34px; }
+      body.about-page header#main-header .header-container { height: 60px; padding: 0 16px; }
+      body.about-page .hero-background { min-height: 240px; }
+      body.about-page .hero-text { font-size: 0.88rem; }
+      body.about-page .about-section { padding: 32px 16px; }
+      body.about-page .section-title { margin-bottom: 20px; }
+      body.about-page .section-text { font-size: 0.88rem; }
+      body.about-page .values-list li,
+      body.about-page .why-list li { padding: 14px 16px; }
+      body.about-page .team-gallery { grid-template-columns: 1fr; max-width: 280px; margin: 8px auto 0; }
+      body.about-page .ab-mobile-nav .ab-mobile-link { font-size: 1.15rem; }
+      body.about-page #ab-scroll-top { width: 40px; height: 40px; bottom: 20px; right: 20px; font-size: 1.05rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      body.about-page *, body.about-page *::before, body.about-page *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body id="page-body" class="about-page">
+
+  <!-- ── Header ── -->
+   <br>
+  <header id="main-header">
+    <div class="header-container">
+      <img src="../cordon images/cordon logo 23.png" alt="Cordon Beauty Bar Logo" class="logo-left">
+      <nav id="navbar" aria-label="Main navigation">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="./About.html" class="nav-link active">About</a>
+        <a href="./Services.html" class="nav-link">Services</a>
+        <a href="./Pricelist.html" class="nav-link">Price List</a>
+        <a href="./Testimonials.html" class="nav-link">Testimonials</a>
+        <a href="./Contact.html" class="nav-link">Contact</a>
+        <a href="./Careers.html" class="nav-link button">Careers</a>
+        <a href="./Book-online.html" class="nav-link button">Book Online</a>
+      </nav>
+      <button class="ab-hamburger" id="ab-hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="ab-mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  <br>
+  </header>
+
+  <!-- ── Mobile Nav Overlay ── -->
+  <nav class="ab-mobile-nav" id="ab-mobile-nav" aria-label="Mobile navigation">
+    <a href="../index.html" class="ab-mobile-link">Home</a>
+    <a href="./About.html" class="ab-mobile-link active">About</a>
+    <a href="./Services.html" class="ab-mobile-link">Services</a>
+    <a href="./Pricelist.html" class="ab-mobile-link">Price List</a>
+    <a href="./Testimonials.html" class="ab-mobile-link">Testimonials</a>
+    <a href="./Contact.html" class="ab-mobile-link">Contact</a>
+    <a href="./Careers.html" class="ab-mobile-link">Careers</a>
+    <a href="./Book-online.html" class="ab-mobile-link ab-mobile-button">Book Online</a>
+  </nav>
+<br>
+  <!-- About Hero -->
+  <section id="hero">
+    <div class="hero-background">
+      <div class="hero-overlay">
+        <div class="hero-content">
+          <h2 class="hero-title">About Us</h2>
+          <p class="hero-text">Welcome to Cordon Beauty Bar — where beauty meets excellence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="about-section" id="mission">
+    <h2 class="section-title">Our Mission</h2>
+    <p class="section-text">To provide exceptional beauty services that enhance our clients' natural beauty and boost their confidence.</p>
+  </section>
+
+  <!-- Values Section -->
+  <section class="about-section" id="values">
+    <h2 class="section-title">Our Values</h2>
+    <ul class="values-list">
+      <li><strong>Quality:</strong> We use only the best products and techniques to ensure outstanding results.</li>
+      <li><strong>Inclusivity:</strong> We celebrate diversity and welcome clients of all backgrounds.</li>
+      <li><strong>Customer Satisfaction:</strong> Your happiness is our top priority, and we strive to exceed your expectations.</li>
+    </ul>
+  </section>
+
+  <!-- Story Section -->
+  <section class="about-section" id="story">
+    <h2 class="section-title">Our Story</h2>
+    <p class="section-text">Founded in 2020, Cordon Beauty Bar was created with a vision to build an inclusive and welcoming space for beauty enthusiasts. Our team of skilled professionals is dedicated to delivering top-notch services in nails, skincare, and grooming.</p>
+  </section>
+
+  <!-- Team Section -->
+  <section class="about-section" id="team">
+    <h2 class="section-title">Meet the Team</h2>
+    <div class="team-gallery">
+      <div class="team-member">
+        <img src="../cordon images/cordon2.jpg" alt="Jane Doe" class="team-image">
+        <h3 class="team-name">Jane Doe</h3>
+        <p class="team-role">Founder & Nail Specialist</p>
+      </div>
+      <div class="team-member">
+        <img src="../cordon images/cordon3.jpg" alt="Michael Smith" class="team-image">
+        <h3 class="team-name">Michael Smith</h3>
+        <p class="team-role">Skincare Expert</p>
+      </div>
+      <div class="team-member">
+        <img src="../cordon images/cordon4.jpg" alt="Priya Singh" class="team-image">
+        <h3 class="team-name">Priya Singh</h3>
+        <p class="team-role">Lash & Brow Specialist</p>
+      </div>
+      <div class="team-member">
+        <img src="../cordon images/cordon5.jpg" alt="Emily Roberts" class="team-image">
+        <h3 class="team-name">Emily Roberts</h3>
+        <p class="team-role">Massage Therapist</p>
+      </div>
+      <div class="team-member">
+        <img src="../cordon images/cordon6.jpg" alt="Thabo Nkosi" class="team-image">
+        <h3 class="team-name">Thabo Nkosi</h3>
+        <p class="team-role">Hair Stylist</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="about-section" id="why-choose-us">
+    <h2 class="section-title">Why Choose Us?</h2>
+    <p class="section-text">At Cordon Beauty Bar, we pride ourselves on delivering exceptional beauty services that not only enhance your natural beauty but also boost your confidence. Here's what sets us apart:</p>
+    <ul class="why-list">
+      <li><strong>Expertise:</strong> Our team of skilled professionals brings years of experience and a passion for their craft.</li>
+      <li><strong>Quality Products:</strong> We use only the finest products to ensure the best results for our clients.</li>
+      <li><strong>Personalized Service:</strong> We take the time to understand your needs and preferences, providing a tailored experience.</li>
+    </ul>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="footer-container">
+      <p class="footer-brand">© 2026 Cordon Beauty Bar · All Rights Reserved</p>
+      <p class="footer-credit">
+        Developed &amp; Maintained by
+        <span class="footer-highlight">Zukhanye Ntlama</span>
+      </p>
+      <div class="footer-social">
+        <a href="mailto:info@cordonbeauty.co.za" class="footer-link">📧 Email</a>
+        <a href="tel:+27213566776" class="footer-link">📞 Call</a>
+        <a href="https://www.linkedin.com/in/zukhanye-ntlama" target="_blank" rel="noopener" class="footer-link">🌐 LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll-to-top -->
+  <button id="ab-scroll-top" aria-label="Scroll to top">↑</button>
+
+  <script>
+    /* ── Hamburger / Mobile Nav ── */
+    const abHamburger = document.getElementById('ab-hamburger');
+    const abMobileNav  = document.getElementById('ab-mobile-nav');
+
+    abHamburger.addEventListener('click', () => {
+      const isOpen = abHamburger.classList.toggle('open');
+      abMobileNav.classList.toggle('open', isOpen);
+      abHamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    abMobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        abHamburger.classList.remove('open');
+        abMobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+    document.addEventListener('click', e => {
+      if (abMobileNav.classList.contains('open') &&
+          !abMobileNav.contains(e.target) &&
+          !abHamburger.contains(e.target)) {
+        abHamburger.classList.remove('open');
+        abMobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    /* ── Scroll-to-top ── */
+    const abScrollBtn = document.getElementById('ab-scroll-top');
+    window.addEventListener('scroll', () => {
+      abScrollBtn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    abScrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+</body>
+</html>
